@@ -30,7 +30,7 @@ void CreateFileDialog::setlabel()
     if((f.open(QIODevice::ReadOnly) || mainvisible))    {   ;  }
     else
     {
-        ui->label->setText("Die Einstellungsdatei existiert nicht.\nSoll sie erstellt werden?");}
+        ui->label->setText(tr("Die Einstellungsdatei existiert nicht.\nSoll sie erstellt werden?"));}
     }
 
 void CreateFileDialog::on_buttonBox_accepted()

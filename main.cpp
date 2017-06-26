@@ -7,7 +7,7 @@
 #include <QTextStream>
 #include <stdio.h>
 
-QTranslator qtTranslator;
+QTranslator MyTranslator;
 int loadlanguage()
 {
     QString datei = "settings.txt", mylanguage, text, junk;
@@ -25,29 +25,29 @@ int loadlanguage()
     }
 #ifdef WIN32
     if(mylanguage == "Systemsprache")
-        qtTranslator.load("qt_de.qm" , "translations\\"); //isn't finish
+        MyTranslator.load("qt_de.qm" , "translations\\"); //isn't finish
     else if(mylanguage == "Deutsch")
-        qtTranslator.load("qt_de.qm", "translations\\");
+        MyTranslator.load("qt_de.qm", "translations\\");
     else if(mylanguage == "English")
-        qtTranslator.load("qt_en.qm", "translations\\");
+        MyTranslator.load("qt_en.qm", "translations\\");
     else if(mylanguage == "Francais")
-        qtTranslator.load("qt_fr.qm", "translations\\");
+        MyTranslator.load("qt_fr.qm", "translations\\");
     else if(mylanguage == "")
-        qtTranslator.load("qt_ru.qm", "translations\\");
+        MyTranslator.load("qt_de.qm", "translations\\");
     else
         return 1;
 #endif
 #ifndef WIN32
     if(mylanguage == "Systemsprache")
-        qtTranslator.load("qt_de.qm" , "./translations/"); //isn't finish
+        MyTranslator.load("qt_de.qm" , "./translations/"); //isn't finish
     else if(mylanguage == "Deutsch")
-        qtTranslator.load("qt_de.qm", "./translations/");
+        MyTranslator.load("qt_de.qm", "./translations/");
     else if(mylanguage == "English")
-        qtTranslator.load("qt_en.qm", "./translations/");
+        MyTranslator.load("qt_en.qm", "./translations/");
     else if(mylanguage == "Francais")
-        qtTranslator.load("qt_fr.qm", "./translations/");
+        MyTranslator.load("qt_fr.qm", "./translations/");
     else if(mylanguage == "")
-        qtTranslator.load("qt_ru.qm", "./translations/");
+        MyTranslator.load("qt_de.qm", "./translations/");
     else
         return 1;
 #endif
@@ -57,12 +57,10 @@ int loadlanguage()
 int main(int argc, char *argv[])
 {
     int languagesucces = loadlanguage();
-    printf("%i", languagesucces);
     QApplication a(argc, argv);
-    a.installTranslator(&qtTranslator);
+    a.installTranslator(&MyTranslator);
     MainWindow w;
     w.show();
     bool succsess = a.exec();
-    return succsess;
+    return (succsess+(languagesucces*2));
 }
-

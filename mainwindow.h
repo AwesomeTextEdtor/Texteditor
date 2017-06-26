@@ -60,6 +60,12 @@ private slots:
 
     void on_pushButton_5_clicked();
 
+    void save();
+
+    void on_actionSpeichern_als_triggered();
+
+    void on_actionDrucken_triggered();
+
 private:
     Ui::MainWindow *ui;
     void openf();
@@ -71,6 +77,9 @@ private:
     void loadsettings();
     void closeEvent(QCloseEvent *event);
     void savecolor();
+    void inittimer();
+    void print();
+
 };
 
 #endif // MAINWINDOW_H

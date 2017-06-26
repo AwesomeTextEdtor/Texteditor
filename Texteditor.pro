@@ -30,3 +30,12 @@ FORMS    += mainwindow.ui \
     helpdialog.ui \
     creditdialog.ui \
     settingsdialog.ui
+
+RESOURCES += \
+    resources.qrc
+
+TRANSLATIONS += \
+    tr_en.ts \
+    tr_de.ts \
+    tr_fr.ts \
+    tr_ru.ts
