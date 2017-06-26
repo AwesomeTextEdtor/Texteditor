@@ -28,7 +28,7 @@
 
 
 char out[127];
-int i, autovervollstaendigung;
+int i, autocomplete;
 QString text, datei, pfad = "", name = "file.txt";
 QString mylanguage, usage, savecolorchar, autosaveintervall, theme, junk;
 bool v_checked = 0;
@@ -47,16 +47,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QList<QString> alignment;
     alignment <<tr("Linksbündig") <<tr("Zentriert") <<tr("Rechtsbündig");
     ui->comboBox->addItems(alignment);
-    ui->lineEdit->setText("file.txt");
+    ui->lineEdit->setText("");
     QIcon Icon("Icon.ico");
     MainWindow::setWindowIcon(Icon);
+    ui->textEdit->setTabStopWidth(30);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-
 
 void MainWindow::loadsettings()
 {
@@ -75,7 +75,7 @@ void MainWindow::loadsettings()
         autosaveintervall = strtok(NULL, outs);
         theme = strtok(NULL, outs);
         junk = strtok(NULL, outs);
-        autovervollstaendigung = junk.toInt();
+        autocomplete = junk.toInt();
         //other Settings    setting = strtok(NULL, outs);
         for(i= 0; i < 16; i++)
         {
@@ -127,6 +127,12 @@ void MainWindow::inittimer()
     }
 }
 
+void MainWindow::loadtheme()
+{
+    QPalette windowtheme;
+    windowtheme = ui->centralWidget->palette();
+}
+
 
 void MainWindow::on_fontComboBox_currentFontChanged(const QFont &f)
     {    ui->textEdit->setFont(f);}
@@ -159,7 +165,7 @@ void MainWindow::on_pushButton_clicked()        {
     save();}
 
 void MainWindow::on_pushButton_2_clicked()      {
-if(!ui->checkBox_5->isChecked())openf(); else openfv();}
+    open();}
 
 void MainWindow::on_pushButton_4_clicked()      {
     if(!ui->checkBox_5->isChecked()) exportf(); else exportfv();}
@@ -168,12 +174,34 @@ void MainWindow::on_pushButton_3_clicked()      {    remove("tmp.txt"); qApp->qu
 
 void MainWindow::save()
 {
-    if(!ui->checkBox_5->isChecked())
-        savef();
-    else
-        savefv();
+    QFont Font = ui->textEdit->font();
+    QString ending;
+    //scan for ending
+    if(ending == "gef")
+        ;
+    else{
+        if(!ui->checkBox_5->isChecked())
+            savef();
+        else
+            savefv();
+    }
+    ui->textEdit->setFont(Font);
 }
-
+void MainWindow::open()
+{
+    QFont Font = ui->textEdit->font();
+    QString ending;
+    //scan for ending
+    if(ending == "gef")
+        ;
+    else{
+        if(!ui->checkBox_5->isChecked())
+            openf();
+        else
+            openfv();
+    }
+    ui->textEdit->setFont(Font);
+}
 
 void MainWindow::openf()
 {
@@ -397,49 +425,48 @@ void MainWindow::print()
 //    }
 }
 
-void MainWindow::on_textEdit_textChanged()      //////////geht nur beim letzten Zeichen, muss überarbeitet werden
+void MainWindow::on_textEdit_textChanged()
 {
-    if(autovervollstaendigung)
+    if(autocomplete)
     {
-        QTextCursor cursor;
-        cursor = ui->textEdit->textCursor();
+        QTextCursor cursor= ui->textEdit->textCursor();
+        QFont Font = ui->textEdit->font();
         text = ui->textEdit->toPlainText();
-        char* data = new char[text.length() + 1];
-        strcpy(data, text.toLatin1().data());
-        switch (data[text.length()-1]) {
-        case '(':
-            text = text + ')';
+        if(text.at(ui->textEdit->textCursor().position()-1) == "(")
+        {
+            text.insert(ui->textEdit->textCursor().position(), ")");
             ui->textEdit->setText(text);
-            cursor.setPosition(cursor.position() -1);
+            cursor.setPosition(cursor.position()-1);
             ui->textEdit->setTextCursor(cursor);
-            break;
-        case '[':
-            text = text + ']';
-            ui->textEdit->setText(text);
-            cursor.setPosition(cursor.position() -1);
-            ui->textEdit->setTextCursor(cursor);
-            break;
-        case '{':
-            text = text+ '}';
-            ui->textEdit->setText(text);
-            cursor.setPosition(cursor.position() -1);
-            ui->textEdit->setTextCursor(cursor);
-            break;
-        case '/':
-            text = text+ "\\";
-            ui->textEdit->setText(text);
-            cursor.setPosition(cursor.position() -1);
-            ui->textEdit->setTextCursor(cursor);
-            break;
-        default:
-            break;
         }
+        else if(text.at(ui->textEdit->textCursor().position()-1) == "{")
+        {
+            text.insert(ui->textEdit->textCursor().position(), "}");
+            ui->textEdit->setText(text);
+            cursor.setPosition(cursor.position()-1);
+            ui->textEdit->setTextCursor(cursor);
+        }
+        else if(text.at(ui->textEdit->textCursor().position()-1) == "[")
+        {
+            text.insert(ui->textEdit->textCursor().position(), "]");
+            ui->textEdit->setText(text);
+            cursor.setPosition(cursor.position()-1);
+            ui->textEdit->setTextCursor(cursor);
+        }
+        else if(text.at(ui->textEdit->textCursor().position()-1) == "<")
+        {
+            text.insert(ui->textEdit->textCursor().position(), ">");
+            ui->textEdit->setText(text);
+            cursor.setPosition(cursor.position()-1);
+            ui->textEdit->setTextCursor(cursor);
+        }
+        ui->textEdit->setFont(Font);
     }
 }
 
 void MainWindow::on_actionOeffnen_triggered()
 {
-    if(!ui->checkBox_5->isChecked())openf(); else openfv();
+    open();
 }
 
 void MainWindow::on_actionExportieren_triggered()
@@ -513,7 +540,7 @@ void MainWindow::on_pushButton_5_clicked()
 //CreateFileDialog has  Bugs, doesn't open sometimes
 void MainWindow::savecolor()
 {
-    QFile f(datei);
+    QFile f("settings.txt");
     QTextStream in(&f);
     openf:if(f.open(QIODevice::ReadOnly))
     {
@@ -539,10 +566,10 @@ void MainWindow::savecolor()
         char out[2] = ";";
         text = strtok(text.toLatin1().data(), out);
         text = text + ';' + strtok(NULL, out) + ';';
+        text = text + strtok(NULL, out) + ';';
+        text = text + strtok(NULL, out) + ';';
+        text = text + strtok(NULL, out) + ';';
         text = text + strtok(NULL, out) + ';'; //dublicate when you add a new setting
-        text = text + strtok(NULL, out) + ';';
-        text = text + strtok(NULL, out) + ';';
-        text = text + strtok(NULL, out) + ';';
         for(i = 0; i < 16; i++)
         {
             customcolor[i] = QColorDialog::customColor(i);

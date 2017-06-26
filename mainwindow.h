@@ -60,11 +60,13 @@ private slots:
 
     void on_pushButton_5_clicked();
 
-    void save();
-
     void on_actionSpeichern_als_triggered();
 
     void on_actionDrucken_triggered();
+
+    void save();
+
+    void open();
 
 private:
     Ui::MainWindow *ui;
@@ -79,6 +81,7 @@ private:
     void savecolor();
     void inittimer();
     void print();
+    void loadtheme();
 
 };
 
