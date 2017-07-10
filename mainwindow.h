@@ -68,6 +68,8 @@ private slots:
 
     void open();
 
+    void on_pushButton_6_clicked();
+
 private:
     Ui::MainWindow *ui;
     void openf();

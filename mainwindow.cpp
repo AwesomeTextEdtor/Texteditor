@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QIcon Icon("Icon.ico");
     MainWindow::setWindowIcon(Icon);
     ui->textEdit->setTabStopWidth(30);
+    tr("hallo");
 }
 
 MainWindow::~MainWindow()
@@ -63,7 +64,7 @@ void MainWindow::loadsettings()
     datei = "settings.txt";
     QFile f(datei);
     QTextStream in(&f);
-    openf:if(f.open(QIODevice::ReadOnly))
+    settings:if(f.open(QIODevice::ReadOnly))
     {
         text = in.readAll();
         char* dataf = new char[text.length() + 1];
@@ -82,12 +83,19 @@ void MainWindow::loadsettings()
             customcolor[i] = strtok(NULL, outs);
             QColorDialog::setCustomColor(i, customcolor[i]);
         }
+        if(pfad == "")
+            pfad = "C:\\";
+        if(autosaveintervall == "")
+            autosaveintervall = "0.5 min";
         ui->label->setText(pfad);
         inittimer();
     }
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Einstellungsdatei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();
         if(create)
@@ -98,7 +106,8 @@ void MainWindow::loadsettings()
             fp = fopen(file, "w");
             SettingsDialog a;
             a.exec();
-            goto openf;
+            fp =fp;
+            goto settings;
         }
     }
     FILE* fp;
@@ -174,6 +183,9 @@ void MainWindow::on_pushButton_3_clicked()      {    remove("tmp.txt"); qApp->qu
 
 void MainWindow::save()
 {
+    QFile c("tmp.txt");
+    c.open(QIODevice::WriteOnly);
+    c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
     QFont Font = ui->textEdit->font();
     QString ending;
     //scan for ending
@@ -189,6 +201,9 @@ void MainWindow::save()
 }
 void MainWindow::open()
 {
+    QFile c("tmp.txt");
+    c.open(QIODevice::WriteOnly);
+    c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
     QFont Font = ui->textEdit->font();
     QString ending;
     //scan for ending
@@ -218,6 +233,9 @@ void MainWindow::openf()
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();;
         if(create)
@@ -226,6 +244,7 @@ void MainWindow::openf()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
+            fp =fp;
             goto openf;
         }
     }
@@ -253,6 +272,9 @@ void MainWindow::savef()
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();
         if(create)
@@ -261,6 +283,7 @@ void MainWindow::savef()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
+            fp =fp;
             goto savef;
         }
     }
@@ -288,6 +311,9 @@ void MainWindow::exportf()
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();
         if(create)
@@ -296,6 +322,7 @@ void MainWindow::exportf()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
+            fp =fp;
             goto exportf;
         }
     }
@@ -313,7 +340,7 @@ void MainWindow::openfv()
     datei = pfad + name;
     QFile f(datei);
     QTextStream in(&f);
-    openf:if(f.open(QIODevice::ReadOnly))
+    openfv:if(f.open(QIODevice::ReadOnly))
     {
         text = in.readAll();
         char* textin = new char[text.length()+1];
@@ -325,8 +352,6 @@ void MainWindow::openfv()
         for(i = 0; i < (text.length()+1); i++)
         {
             textin[i] = textin[i] - 10;
-            if(textin[i] > 127)
-                textin[i] = ' ';
         }
         text = strtok(textin, out);
         ui->textEdit->setHtml(text);
@@ -334,6 +359,9 @@ void MainWindow::openfv()
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();;
         if(create)
@@ -342,7 +370,8 @@ void MainWindow::openfv()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
-            goto openf;
+            fp = fp;
+            goto openfv;
         }
         create = false;
     }
@@ -355,7 +384,7 @@ void MainWindow::savefv()
     datei = pfad + name;
     QFile f(datei);
     QTextStream in(&f);
-    savef:if(f.open(QIODevice::WriteOnly))
+    savefv:if(f.open(QIODevice::WriteOnly))
     {
         text = ui->textEdit->toPlainText();
         char* dataf = new char[text.length() + 1];
@@ -375,7 +404,8 @@ void MainWindow::savefv()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
-            goto savef;
+            fp = fp;
+            goto savefv;
         }
         create = false;
     }
@@ -388,7 +418,7 @@ void MainWindow::exportfv()
     datei = pfad + name;
     QFile f(datei);
     QTextStream in(&f);
-    exportf:if(f.open(QIODevice::WriteOnly))
+    exportfv:if(f.open(QIODevice::WriteOnly))
     {
         text = ui->textEdit->toHtml();
         char* dataf = new char[text.length() + 1];
@@ -400,6 +430,9 @@ void MainWindow::exportfv()
     else
     {
         bool create = false;
+        QFile c("tmp.txt");
+        c.open(QIODevice::WriteOnly);
+        c.write(tr("Die Datei existiert nicht\nSoll sie erstellt werden?").toLatin1().data());    c.close();
         CreateFileDialog a;
         create = a.exec();
         if(create)
@@ -408,7 +441,8 @@ void MainWindow::exportfv()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
-            goto exportf;
+            fp = fp;
+            goto exportfv;
         }
         create = false;
     }
@@ -416,13 +450,17 @@ void MainWindow::exportfv()
 
 void MainWindow::print()
 {
-//    text = ui->textEdit->toPlainText();
-//    QPrinter printer;
-//    QPrintDialog PrintDialog(&printer);
-//    if(PrintDialog.exec() == QDialog::Accepted)
-//    {
-
-//    }
+    QString printtext = ui->textEdit->toPlainText();
+    QFont font = ui->textEdit->font();
+    QTextDocument document(printtext, this);
+    QPrinter printer;
+    printer.setResolution(QPrinter::HighResolution);
+    QPrintDialog PrintDialog(&printer);
+    if(PrintDialog.exec() == QDialog::Accepted)
+    {
+        document.setHtml(ui->textEdit->toHtml());
+        document.print(&printer);
+    }
 }
 
 void MainWindow::on_textEdit_textChanged()
@@ -519,6 +557,10 @@ void MainWindow::on_actionDrucken_triggered()
     print();
 }
 
+void MainWindow::on_pushButton_6_clicked()
+{
+    print();
+}
 
 void MainWindow::on_comboBox_currentTextChanged(const QString &arg1)
 {
@@ -537,7 +579,6 @@ void MainWindow::on_pushButton_5_clicked()
     ui->textEdit->setTextColor(textcolor);
 }
 
-//CreateFileDialog has  Bugs, doesn't open sometimes
 void MainWindow::savecolor()
 {
     QFile f("settings.txt");
@@ -557,6 +598,7 @@ void MainWindow::savecolor()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
+            fp = fp;
             goto openf;
         }
     }
@@ -592,6 +634,7 @@ void MainWindow::savecolor()
             char* file = new char[datei.length() + 1];
             strcpy(file, datei.toLatin1().data());
             fp = fopen(file, "w");
+            fp = fp;
             goto savef;
         }
     }
@@ -608,3 +651,5 @@ void MainWindow::closeEvent( QCloseEvent *event)
     if(tmp.remove())
         event->accept();
 }
+
+//CreateFileDialog has  Bugs, doesn't open sometimes

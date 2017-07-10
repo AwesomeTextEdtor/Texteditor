@@ -23,15 +23,19 @@ void CreateFileDialog::setlabel()
 {
     QString datei = "settings.txt", check = "tmp.txt";
     QFile f(datei), c(check);
+    QTextStream in(&c);
     bool mainvisible =  false;
 
-    if(c.open(QIODevice::ReadOnly))
+    if(c.open(QIODevice::ReadWrite))
              mainvisible = true;
     if((f.open(QIODevice::ReadOnly) || mainvisible))    {   ;  }
     else
     {
-        ui->label->setText(tr("Die Einstellungsdatei existiert nicht.\nSoll sie erstellt werden?"));}
+        ui->label->setText(tr("Die Einstellungsdatei existiert nicht.\nSoll sie erstellt werden?"));
     }
+    ui->label->setText(in.readAll());
+    c.write("");
+}
 
 void CreateFileDialog::on_buttonBox_accepted()
 {

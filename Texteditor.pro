@@ -4,7 +4,9 @@
 #
 #-------------------------------------------------
 
+CODECFORTR = UTF-8
 QT       += core gui
+QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -39,3 +41,10 @@ TRANSLATIONS += \
     tr_de.ts \
     tr_fr.ts \
     tr_ru.ts
+
+OTHER_FILES += \
+    tr_en.ts \
+    tr_de.ts \
+    tr_fr.ts \
+    tr_ru.ts
+
