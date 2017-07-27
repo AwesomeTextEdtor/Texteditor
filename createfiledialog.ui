@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>186</width>
-    <height>73</height>
+    <height>76</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,7 +30,7 @@ Soll sie erstellt werden?</string>
         <enum>Qt::Horizontal</enum>
        </property>
        <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+        <set>QDialogButtonBox::No|QDialogButtonBox::Yes</set>
        </property>
       </widget>
      </item>

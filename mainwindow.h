@@ -70,6 +70,8 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_comboBox_2_currentTextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     void openf();
@@ -79,11 +81,12 @@ private:
     void savefv();
     void exportfv();
     void loadsettings();
+    void loadtheme();
+    void loadicons();
     void closeEvent(QCloseEvent *event);
     void savecolor();
     void inittimer();
     void print();
-    void loadtheme();
 
 };
 

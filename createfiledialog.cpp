@@ -1,3 +1,6 @@
+#define CREATEFILEDIALOG
+//#include "includes.h"
+
 #include "createfiledialog.h"
 #include "ui_createfiledialog.h"
 #include <QFile>
@@ -49,3 +52,5 @@ void CreateFileDialog::on_buttonBox_rejected()
     fclose(fp);
     done(0);
 }
+
+#undef CREATEFILEDIALOG

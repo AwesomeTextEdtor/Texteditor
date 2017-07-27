@@ -16,7 +16,7 @@ Soll sie erstellt werden?</source>
 shall it be created?</translation>
     </message>
     <message>
-        <location filename="createfiledialog.cpp" line="33"/>
+        <location filename="createfiledialog.cpp" line="37"/>
         <source>Die Einstellungsdatei existiert nicht.
 Soll sie erstellt werden?</source>
         <translation>The settingsfile doesn&apos;t exist.
@@ -286,32 +286,59 @@ p, li { white-space: pre-wrap; }
         <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="48"/>
-        <location filename="mainwindow.cpp" line="539"/>
+        <location filename="mainwindow.cpp" line="50"/>
+        <location filename="mainwindow.cpp" line="599"/>
         <source>Linksbündig</source>
         <translation>left-justified</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="48"/>
-        <location filename="mainwindow.cpp" line="541"/>
+        <location filename="mainwindow.cpp" line="50"/>
+        <location filename="mainwindow.cpp" line="601"/>
         <source>Zentriert</source>
         <translation>centered</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="48"/>
-        <location filename="mainwindow.cpp" line="543"/>
+        <location filename="mainwindow.cpp" line="50"/>
+        <location filename="mainwindow.cpp" line="603"/>
         <source>Rechtsbündig</source>
         <translation>right-justified</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="54"/>
+        <location filename="mainwindow.cpp" line="56"/>
         <source>hallo</source>
-        <translation type="unfinished"></translation>
+        <translation>hello</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="113"/>
+        <location filename="mainwindow.cpp" line="100"/>
+        <source>Die Einstellungsdatei existiert nicht
+Soll sie erstellt werden?</source>
+        <translation>The settingsfile doesn&apos;t exist
+shall it be created?</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="122"/>
         <source>Nie</source>
         <translation>Never</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="197"/>
+        <location filename="mainwindow.cpp" line="215"/>
+        <location filename="mainwindow.cpp" line="247"/>
+        <location filename="mainwindow.cpp" line="289"/>
+        <location filename="mainwindow.cpp" line="332"/>
+        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="mainwindow.cpp" line="459"/>
+        <source>Die Datei existiert nicht
+Soll sie erstellt werden?</source>
+        <translation>The file deosn&apos;t exist
+shall it be created?</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="651"/>
+        <source>Es gibt ungespeicherte änderungen
+Soll alles gespeichert werden?</source>
+        <translation>There are unsaved changes
+shall everything be saved?</translation>
     </message>
 </context>
 <context>
@@ -359,32 +386,32 @@ p, li { white-space: pre-wrap; }
         <translation>Theme(WIP)</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="19"/>
+        <location filename="settingsdialog.cpp" line="22"/>
         <source>Büroarbeit</source>
         <translation>Officework</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="19"/>
+        <location filename="settingsdialog.cpp" line="22"/>
         <source>Entwicklung</source>
         <translation>Development</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="19"/>
+        <location filename="settingsdialog.cpp" line="22"/>
         <source>Wissenschaftlich</source>
         <translation>Scientific</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="22"/>
+        <location filename="settingsdialog.cpp" line="25"/>
         <source>Nie</source>
         <translation>Never</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="25"/>
+        <location filename="settingsdialog.cpp" line="28"/>
         <source>Normal</source>
         <translation>Normal</translation>
     </message>
     <message>
-        <location filename="settingsdialog.cpp" line="25"/>
+        <location filename="settingsdialog.cpp" line="28"/>
         <source>Dunkel</source>
         <translation>Dark</translation>
     </message>

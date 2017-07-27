@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>155</width>
-    <height>100</height>
+    <width>299</width>
+    <height>140</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,9 +22,7 @@
         <enum>Qt::LeftToRight</enum>
        </property>
        <property name="text">
-        <string>Programm von Georg
- Qt 5.7 unter Windows
-Qt 5.5 unter Linux</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Programm von Georg Qt 5.9.2 unter Windows &lt;/p&gt;&lt;p&gt;und Qt 5.9.1 unter Linux &lt;/p&gt;&lt;p&gt;Icons made by &lt;a href=&quot;http://www.freepik.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;Freepik&lt;/span&gt;&lt;/a&gt; from &lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.flaticon.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;www.flaticon.com&lt;/span&gt;&lt;/a&gt; is licensed by &lt;a href=&quot;http://creativecommons.org/licenses/by/3.0/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#007af4;&quot;&gt;CC 3.0 BY&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

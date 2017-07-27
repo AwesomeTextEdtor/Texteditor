@@ -21,6 +21,8 @@ private slots:
 
     void on_buttonBox_rejected();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::SettingsDialog *ui;
     void load();

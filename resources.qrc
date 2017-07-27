@@ -1,5 +1,14 @@
 <RCC>
-    <qresource prefix="/new/ico">
-        <file>Icon.ico</file>
+    <qresource prefix="/">
+        <file>Icons/export (1).png</file>
+        <file>Icons/export.png</file>
+        <file>Icons/icon.png</file>
+        <file>Icons/redo.png</file>
+        <file>Icons/settings.png</file>
+        <file>Icons/undo.png</file>
+        <file>Icons/open.png</file>
+        <file>Icons/print.png</file>
+        <file>Icons/quit.png</file>
+        <file>Icons/save.png</file>
     </qresource>
 </RCC>

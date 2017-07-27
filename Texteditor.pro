@@ -25,7 +25,8 @@ HEADERS  += mainwindow.h \
     createfiledialog.h \
     helpdialog.h \
     creditdialog.h \
-    settingsdialog.h
+    settingsdialog.h \
+    includes.h
 
 FORMS    += mainwindow.ui \
     createfiledialog.ui \
@@ -46,5 +47,7 @@ OTHER_FILES += \
     tr_en.ts \
     tr_de.ts \
     tr_fr.ts \
-    tr_ru.ts
+    tr_ru.ts \
+    notes.txt \
+    readme.md
 

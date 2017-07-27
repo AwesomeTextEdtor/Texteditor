@@ -1,3 +1,6 @@
+#define SETTINGSDIALOG
+//#include "includes.h"
+
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 #include <QFile>
@@ -22,7 +25,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     autosaveintervall <<"0.5 min" <<"1 min" <<"5 min" <<"10 min" << "30 min" << tr("Nie");
     ui->comboBox_3->addItems(autosaveintervall);
     QList<QString> theme;
-    theme << tr("Normal") << tr("Dunkel");
+    theme << "Normal" << "Dark" << "Dark Fusion";
     ui->comboBox_4->addItems(theme);
     load();
 }
@@ -31,7 +34,8 @@ SettingsDialog::~SettingsDialog()
 {
     delete ui;
 }
-QString language, colors;
+QString language, addColor, colors;
+QColor customcolors[16];
 
 void SettingsDialog::load()
 {
@@ -51,7 +55,17 @@ void SettingsDialog::load()
         ui->comboBox_4->setCurrentText((strtok(NULL, outs)));
         junk = strtok(NULL, outs);
         ui->checkBox->setChecked(junk.toInt());
-        colors = strtok(NULL, "_");
+        for(int i= 0; i < 16; i++)
+        {
+            QString addColor = strtok(NULL, outs);
+            customcolors[i] = addColor;
+            colors.append(addColor+";");
+            QColorDialog::setCustomColor(i, customcolors[i]);
+            QPixmap pixmap(10, 10);
+            pixmap.fill(customcolors[i]);
+            QIcon colorIcon(pixmap);
+            ui->comboBox_5->addItem(colorIcon, addColor);
+        }
         //other settings
     }
     else
@@ -69,7 +83,6 @@ void SettingsDialog::load()
         }
     }
 }
-
 
 void SettingsDialog::on_buttonBox_accepted()
 {
@@ -118,3 +131,30 @@ void SettingsDialog::save()
         }
     }
 }
+
+void SettingsDialog::on_pushButton_clicked()
+{
+    QColorDialog a;
+    a.exec();
+    ui->comboBox_5->clear();
+    colors.clear();
+    for(int i= 0; i < 16; i++)
+    {
+        customcolors[i] = QColorDialog::customColor(i);
+        QString addColor = customcolors[i].name();
+        colors.append(addColor+";");
+        QColorDialog::setCustomColor(i, customcolors[i]);
+        QPixmap pixmap(10, 10);
+        pixmap.fill(customcolors[i]);
+        QIcon colorIcon(pixmap);
+        ui->comboBox_5->addItem(colorIcon, addColor);
+    }
+}
+
+#undef SETTINGSDIALOG
+
+
+
+
+
+

@@ -1,3 +1,6 @@
+#define CREDITDIALOG
+//#include "includes.h"
+
 #include "creditdialog.h"
 #include "ui_creditdialog.h"
 
@@ -17,3 +20,5 @@ void CreditDialog::on_pushButton_clicked()
 {
     done(1);
 }
+
+#undef CREDITDIALOG
