@@ -33,7 +33,7 @@ char out[127];
 int i, autocomplete;
 QString text, datei, pfad = "", name = "file.txt";
 QString mylanguage, usage, savecolorchar, autosaveintervall, junk;
-bool v_checked = 0, saved = 1;
+bool v_checked = 0, saved = 1, devmode=false;
 QColor textcolor, initial = Qt::white, color, customcolor[16];
 QColorDialog::ColorDialogOptions options;
 
@@ -58,6 +58,8 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
 
 void MainWindow::loadsettings()
 {
@@ -92,6 +94,8 @@ void MainWindow::loadsettings()
             pfad = "C:\\";
         if(autosaveintervall == "")
             autosaveintervall = "0.5 min";
+        if(usage == "Entwicklung")
+            loadDevMode();
         ui->label->setText(pfad);
         inittimer();
 
@@ -140,6 +144,8 @@ void MainWindow::loadicons()
 void MainWindow::loadDevMode()
 {
     highlightCurrentLine();
+    highlighter = new Highlighter(ui->textEdit->document());
+    devmode = true;
 }
 
 void MainWindow::inittimer()
@@ -544,6 +550,8 @@ void MainWindow::on_textEdit_textChanged()
         }
         ui->textEdit->setFont(Font);
     }
+//    if(devmode)
+//        highlighter->setDocument(ui->textEdit->document());
 }
 
 

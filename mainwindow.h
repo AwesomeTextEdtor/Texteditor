@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTextDocument>
+#include <syntaxhighlighter.h>
 
 namespace Ui {
 class MainWindow;
@@ -92,6 +94,7 @@ private:
     void print();
     void highlightCurrentLine();
 
+    Highlighter *highlighter;
 };
 
 #endif // MAINWINDOW_H
