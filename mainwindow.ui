@@ -14,7 +14,7 @@
    <string>Texteditor</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="resources.qrc">
+   <iconset>
     <normaloff>:/new/ico/Icon.ico</normaloff>:/new/ico/Icon.ico</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
@@ -105,7 +105,9 @@
            <set>QFontComboBox::MonospacedFonts|QFontComboBox::ProportionalFonts|QFontComboBox::ScalableFonts</set>
           </property>
           <property name="currentFont">
-           <font/>
+           <font>
+            <family>DejaVu Sans</family>
+           </font>
           </property>
          </widget>
         </item>
@@ -154,7 +156,7 @@
          <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Noto Sans'; font-size:10pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="placeholderText">
@@ -260,7 +262,7 @@ p, li { white-space: pre-wrap; }
      <x>0</x>
      <y>0</y>
      <width>783</width>
-     <height>20</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
@@ -296,28 +298,6 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuBearbeiten"/>
    <addaction name="menuHilfe"/>
   </widget>
-  <action name="actionSpeichern">
-   <property name="checkable">
-    <bool>false</bool>
-   </property>
-   <property name="checked">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>&amp;Speichern</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionoeffnen">
-   <property name="text">
-    <string>&amp;Öffnen</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
   <action name="actionSpeichern">
    <property name="text">
     <string>&amp;Speichern</string>
@@ -362,48 +342,30 @@ p, li { white-space: pre-wrap; }
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>S&amp;chliessen</string>
+    <string>&amp;Schliessen</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
    </property>
   </action>
-  <action name="actionHilfe">
-   <property name="text">
-    <string>&amp;Hilfe</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H</string>
-   </property>
-  </action>
-  <action name="actionBer_den_Editor">
-   <property name="text">
-    <string>Anleitung</string>
-   </property>
-  </action>
-  <action name="actionQt">
-   <property name="text">
-    <string>Qt</string>
-   </property>
-  </action>
   <action name="actionAleitung">
    <property name="text">
-    <string>Anleitung</string>
+    <string>&amp;Anleitung</string>
    </property>
   </action>
   <action name="actionCredits">
    <property name="text">
-    <string>Credits</string>
+    <string>&amp;Credits</string>
    </property>
   </action>
   <action name="actionEinstellungen">
    <property name="text">
-    <string>Einstellungen</string>
+    <string>&amp;Einstellungen</string>
    </property>
   </action>
   <action name="actionRueckg_ngig">
    <property name="text">
-    <string>Rückgängig</string>
+    <string>&amp;Rückgängig</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
@@ -411,7 +373,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionWiederherstellen">
    <property name="text">
-    <string>Wiederherstellen</string>
+    <string>&amp;Wiederherstellen</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Z</string>
@@ -419,7 +381,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionSpeichern_als">
    <property name="text">
-    <string>Speichern als</string>
+    <string>&amp;Speichern als</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
@@ -427,7 +389,7 @@ p, li { white-space: pre-wrap; }
   </action>
   <action name="actionDrucken">
    <property name="text">
-    <string>Drucken</string>
+    <string>&amp;Drucken</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
@@ -435,8 +397,6 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

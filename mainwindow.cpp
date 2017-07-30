@@ -4,7 +4,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "createfiledialog.h"
+#include "helpdialog.h"
+#include "creditdialog.h"
+#include "settingsdialog.h"
 #include "qfont.h"
+#include <limits.h>
 #include <QFont>
 #include <QString>
 #include <QMenuBar>
@@ -12,10 +16,6 @@
 #include <QTextStream>
 #include <QDebug>
 #include <QByteArray>
-#include <limits.h>
-#include "helpdialog.h"
-#include "creditdialog.h"
-#include "settingsdialog.h"
 #include <QCloseEvent>
 #include <QList>
 #include <QColorDialog>
@@ -94,6 +94,7 @@ void MainWindow::loadsettings()
             autosaveintervall = "0.5 min";
         ui->label->setText(pfad);
         inittimer();
+
     }
     else
     {
@@ -132,6 +133,13 @@ void MainWindow::loadicons()
     ui->actionRueckg_ngig->setIcon(QIcon(":/Icons/undo.png"));
     ui->actionWiederherstellen->setIcon(QIcon(":/Icons/redo.png"));
     ui->actionEinstellungen->setIcon(QIcon(":/Icons/settings.png"));
+    ui->actionAleitung->setIcon(QIcon(":/Icons/icon.png"));
+    ui->actionCredits->setIcon(QIcon(":/Icons/icon.png"));
+}
+
+void MainWindow::loadDevMode()
+{
+    highlightCurrentLine();
 }
 
 void MainWindow::inittimer()
@@ -538,6 +546,32 @@ void MainWindow::on_textEdit_textChanged()
     }
 }
 
+
+void MainWindow::on_textEdit_cursorPositionChanged()
+{
+    if(usage == tr("Entwicklung").toLatin1().data())
+        highlightCurrentLine();
+}
+
+void MainWindow::highlightCurrentLine()
+{
+    QList<QTextEdit::ExtraSelection> extraSelections;
+
+    if (!ui->textEdit->isReadOnly()) {
+        QTextEdit::ExtraSelection selection;
+
+        QColor lineColor = QColor(Qt::darkGray).lighter(160);
+
+        selection.format.setBackground(lineColor);
+        selection.format.setProperty(QTextFormat::FullWidthSelection, true);
+        selection.cursor = ui->textEdit->textCursor();
+        selection.cursor.clearSelection();
+        extraSelections.append(selection);
+    }
+
+    ui->textEdit->setExtraSelections(extraSelections);
+}
+
 void MainWindow::on_actionOeffnen_triggered()
 {
     open();
@@ -691,6 +725,7 @@ void MainWindow::closeEvent( QCloseEvent *event)
 }
 
 #undef MAINWINDOW_CPP
+
 
 
 

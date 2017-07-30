@@ -72,7 +72,7 @@
     <item>
      <widget class="QCheckBox" name="checkBox">
       <property name="text">
-       <string>Autovervollständigung von &quot;(, {, [, /&quot;</string>
+       <string>Autovervollständigung von &quot;(, {, [, &gt;&quot;</string>
       </property>
      </widget>
     </item>
