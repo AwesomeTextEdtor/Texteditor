@@ -23,6 +23,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_applyButton_clicked();
+
 private:
     Ui::SettingsDialog *ui;
     void load();

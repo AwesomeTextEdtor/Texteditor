@@ -16,20 +16,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    createfiledialog.cpp \
     helpdialog.cpp \
     creditdialog.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    syntaxhighlighter.cpp
 
 HEADERS  += mainwindow.h \
-    createfiledialog.h \
     helpdialog.h \
     creditdialog.h \
     settingsdialog.h \
-    includes.h
+    includes.h \
+    syntaxhighlighter.h
 
 FORMS    += mainwindow.ui \
-    createfiledialog.ui \
     helpdialog.ui \
     creditdialog.ui \
     settingsdialog.ui

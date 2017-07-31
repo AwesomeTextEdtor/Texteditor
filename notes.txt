@@ -1,0 +1,13 @@
+Geplant:
+	Links(markierung und aufrufbar)
+	Listen(siehe qt example textedit)
+	Bilder(siehe qt example textedit)
+	QMessage box statt popupdialog
+		.gef datei support(my)
+	andere Datei öffnen(wie save as)
+	Druck vorschau
+	
+
+Bugs:
+    Einstellungsdatei schrottet sich manchmal(Debug)
+		--> autosaveTimer = 0		--> nicht nutzbar

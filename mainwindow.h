@@ -34,15 +34,17 @@ private slots:
 
     void on_pushButton_2_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_5_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_pushButton_6_clicked();
 
     void on_actionOeffnen_triggered();
 
-    void on_actionExportieren_triggered();
-
     void on_actionSpeichern_triggered();
+
+    void on_actionSpeichern_als_triggered();
+
+    void on_actionDrucken_triggered();
 
     void on_actionCredits_triggered();
 
@@ -52,38 +54,24 @@ private slots:
 
     void on_actionEinstellungen_triggered();
 
-    void on_textEdit_textChanged();
-
     void on_actionRueckg_ngig_triggered();
 
     void on_actionWiederherstellen_triggered();
 
     void on_comboBox_currentTextChanged(const QString &arg1);
 
-    void on_pushButton_5_clicked();
-
-    void on_actionSpeichern_als_triggered();
-
-    void on_actionDrucken_triggered();
-
     void save();
 
     void open();
-
-    void on_pushButton_6_clicked();
 
     void on_comboBox_2_currentTextChanged(const QString &arg1);
 
     void on_textEdit_cursorPositionChanged();
 
+    void on_textEdit_textChanged();
+
 private:
     Ui::MainWindow *ui;
-    void openf();
-    void savef();
-    void exportf();
-    void openfv();
-    void savefv();
-    void exportfv();
     void loadsettings();
     void loadtheme();
     void loadicons();

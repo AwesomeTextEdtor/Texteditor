@@ -190,20 +190,13 @@ p, li { white-space: pre-wrap; }
                </widget>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton_4">
+               <widget class="QPushButton" name="pushButton_6">
                 <property name="text">
-                 <string>Exportieren</string>
+                 <string>Drucken</string>
                 </property>
                </widget>
               </item>
              </layout>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_6">
-              <property name="text">
-               <string>Drucken</string>
-              </property>
-             </widget>
             </item>
             <item>
              <spacer name="horizontalSpacer">
@@ -275,7 +268,6 @@ p, li { white-space: pre-wrap; }
     <addaction name="actionOeffnen"/>
     <addaction name="actionSpeichern"/>
     <addaction name="actionSpeichern_als"/>
-    <addaction name="actionExportieren"/>
     <addaction name="actionDrucken"/>
     <addaction name="actionSchliessen"/>
    </widget>
@@ -318,14 +310,6 @@ p, li { white-space: pre-wrap; }
     <string>Ctrl+S</string>
    </property>
   </action>
-  <action name="actionExportieren">
-   <property name="text">
-    <string>&amp;Exportieren</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+E</string>
-   </property>
-  </action>
   <action name="actionOeffnen">
    <property name="text">
     <string>&amp;Öffnen</string>
@@ -351,6 +335,9 @@ p, li { white-space: pre-wrap; }
   <action name="actionAleitung">
    <property name="text">
     <string>&amp;Anleitung</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+H</string>
    </property>
   </action>
   <action name="actionCredits">
@@ -398,5 +385,22 @@ p, li { white-space: pre-wrap; }
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>737</x>
+     <y>413</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>775</x>
+     <y>399</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

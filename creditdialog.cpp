@@ -9,6 +9,8 @@ CreditDialog::CreditDialog(QWidget *parent) :
     ui(new Ui::CreditDialog)
 {
     ui->setupUi(this);
+    ui->label->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+    ui->label->setOpenExternalLinks(true);
 }
 
 CreditDialog::~CreditDialog()

@@ -7,8 +7,8 @@
 #include <QTextStream>
 #include <QString>
 #include <string>
-#include "createfiledialog.h"
 #include <QColorDialog>
+#include <QMessageBox>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -70,10 +70,10 @@ void SettingsDialog::load()
     }
     else
     {
-        bool create = false;
-        CreateFileDialog a;
-        create = a.exec();;
-        if(create)
+        QMessageBox messageBox;
+        messageBox.addButton(QMessageBox::Yes);messageBox.addButton(QMessageBox::No);
+        messageBox.setText(tr("Die Einstellungsdatei existiert nicht\nSoll sie erstellt werden?"));
+        if(messageBox.exec() == QMessageBox::Yes)
         {
             FILE* fp;
             char* file = new char[datei.length() + 1];
@@ -86,12 +86,17 @@ void SettingsDialog::load()
 
 void SettingsDialog::on_buttonBox_accepted()
 {
-    save();
+    accept();
 }
 
 void SettingsDialog::on_buttonBox_rejected()
 {
+    reject();
+}
 
+void SettingsDialog::on_applyButton_clicked()
+{
+    save();
 }
 
 void SettingsDialog::save()
@@ -118,10 +123,10 @@ void SettingsDialog::save()
     }
     else
     {
-        bool create = false;
-        CreateFileDialog a;
-        a.exec();
-        if(create)
+        QMessageBox messageBox;
+        messageBox.addButton(QMessageBox::Yes);messageBox.addButton(QMessageBox::No);
+        messageBox.setText(tr("Die Einstellungsdatei existiert nicht\nSoll sie erstellt werden?"));
+        if(messageBox.exec() == QMessageBox::Yes)
         {
             FILE* fp;
             char* file = new char[datei.length() + 1];
@@ -152,6 +157,7 @@ void SettingsDialog::on_pushButton_clicked()
 }
 
 #undef SETTINGSDIALOG
+
 
 
 
