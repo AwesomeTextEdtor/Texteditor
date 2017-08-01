@@ -19,19 +19,23 @@ SOURCES += main.cpp\
     helpdialog.cpp \
     creditdialog.cpp \
     settingsdialog.cpp \
-    syntaxhighlighter.cpp
+    syntaxhighlighter.cpp \
+    tabledialog.cpp
 
 HEADERS  += mainwindow.h \
     helpdialog.h \
     creditdialog.h \
     settingsdialog.h \
     includes.h \
-    syntaxhighlighter.h
+    syntaxhighlighter.h \
+    deenscript.h \
+    tabledialog.h
 
 FORMS    += mainwindow.ui \
     helpdialog.ui \
     creditdialog.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    tabledialog.ui
 
 RESOURCES += \
     resources.qrc
@@ -48,5 +52,5 @@ OTHER_FILES += \
     tr_fr.ts \
     tr_ru.ts \
     notes.txt \
-    readme.md
+    README.md
 

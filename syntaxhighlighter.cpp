@@ -100,6 +100,12 @@ Highlighter::Highlighter(QTextDocument *parent)
 
     commentStartExpression = QRegularExpression("/\\*");
     commentEndExpression = QRegularExpression("\\*/");
+
+    linkFormat.setFontUnderline(true);
+    linkFormat.setForeground(Qt::blue);
+    rule.pattern = QRegularExpression("\\bhttp[s]://[^ ]*\\b");
+    rule.format = linkFormat;
+    highlightingRules.append(rule);
 }
 
 void Highlighter::highlightBlock(const QString &text)
@@ -131,6 +137,34 @@ void Highlighter::highlightBlock(const QString &text)
     }
 }
 
+
+
+StandartHighlighter::StandartHighlighter(QTextDocument *parent)
+    : QSyntaxHighlighter(parent)
+{
+    HighlightingRule rule;
+
+    linkFormat.setFontUnderline(true);
+    linkFormat.setForeground(Qt::blue);
+    rule.pattern = QRegularExpression("http://[^ ]*");
+    rule.format = linkFormat;
+    highlightingRules.append(rule);
+    rule.pattern = QRegularExpression("https://[^ ]*");
+    rule.format = linkFormat;
+    highlightingRules.append(rule);
+
+}
+
+void StandartHighlighter::highlightBlock(const QString &text)
+{
+    foreach (const HighlightingRule &rule, highlightingRules) {
+        QRegularExpressionMatchIterator matchIterator = rule.pattern.globalMatch(text);
+        while (matchIterator.hasNext()) {
+            QRegularExpressionMatch match = matchIterator.next();
+            setFormat(match.capturedStart(), match.capturedLength(), rule.format);
+        }
+    }
+}
 
 
 

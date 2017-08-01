@@ -6,6 +6,8 @@
 #include "helpdialog.h"
 #include "creditdialog.h"
 #include "settingsdialog.h"
+#include "deenscript.h"
+#include "tabledialog.h"
 #include "qfont.h"
 #include <limits.h>
 #include <stdio.h>
@@ -56,7 +58,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->comboBox->addItems(alignment);
     ui->lineEdit->setText("");
     ui->textEdit->setTabStopWidth(30);
-    //ui->textEdit->setTextInteractionFlags(Qt::LinksAccessibleByMouse);
+    saved = true;
+    standarthighlighter = new StandartHighlighter(ui->textEdit->document());
 }
 
 MainWindow::~MainWindow()
@@ -72,20 +75,17 @@ void MainWindow::loadsettings()
     settings:if(f.open(QIODevice::ReadOnly))
     {
         text = in.readAll();
-        char* dataf = new char[text.length() + 1];
-        char outs[2] = ";";
-        strcpy(dataf, text.toLatin1().data());
-        pfad = strtok(dataf, outs);
-        mylanguage = strtok(NULL, outs);
-        usage = strtok(NULL, outs);
-        autosaveintervall = strtok(NULL, outs);
-        themem = strtok(NULL, outs);
-        junk = strtok(NULL, outs);
-        autocomplete = junk.toInt();
+        QList<QString> settings = text.split(";", QString::KeepEmptyParts, Qt::CaseInsensitive);
+        pfad = settings.first();
+        mylanguage = settings.at(1);
+        usage = settings.at(2);
+        autosaveintervall = settings.at(3);
+        themem = settings.at(4);
+        autocomplete = settings.at(5).toInt();
         //other Settings    setting = strtok(NULL, outs);
         for(i= 0; i < 16; i++)
         {
-            QString addColor = strtok(NULL, outs);
+            QString addColor = settings.at(i+6);
             customcolor[i] = addColor;
             QColorDialog::setCustomColor(i, customcolor[i]);
             QPixmap pixmap(10, 10);
@@ -96,7 +96,7 @@ void MainWindow::loadsettings()
         if(pfad == "")
             pfad = "C:\\";
         if(autosaveintervall == "")
-            autosaveintervall = "0.5 min";
+            autosaveintervall = tr("Nie");
         if(usage == "Entwicklung")
             loadDevMode();
         ui->label->setText(pfad);
@@ -122,6 +122,7 @@ void MainWindow::loadicons()
     ui->actionSpeichern_als->setIcon(QIcon(":/Icons/save.png"));
     ui->actionSpeichern->setIcon(QIcon(":/Icons/save.png"));
     ui->actionOeffnen->setIcon(QIcon(":/Icons/open.png"));
+    ui->action_oeffnen_von->setIcon(QIcon(":/Icons/open.png"));
     ui->actionDrucken->setIcon(QIcon(":/Icons/print.png"));
     ui->actionSchliessen->setIcon(QIcon(":/Icons/quit.png"));
     ui->actionRueckg_ngig->setIcon(QIcon(":/Icons/undo.png"));
@@ -194,7 +195,6 @@ void MainWindow::on_pushButton_2_clicked()      {
 
 void MainWindow::save()
 {
-    saved = true;
     QFont Font = ui->textEdit->font();
     QString ending;
     ending = ui->lineEdit->text().split(".", QString::KeepEmptyParts).last();
@@ -226,7 +226,10 @@ void MainWindow::save()
                 f.write(text.toLatin1());}
             else{
                 text = ui->textEdit->toPlainText();
+                if(ui->checkBox_5->isChecked())
+                    text = enscript(text, 10);
                 f.write(text.toLatin1());}
+            saved = true;
         }
     }
     else
@@ -263,7 +266,10 @@ void MainWindow::open()
             ui->textEdit->setHtml(text);}
         else{
             text = in.readAll();
+            if(ui->checkBox_5->isChecked())
+                text = descript(text, 10);
             ui->textEdit->setPlainText(text);}
+        saved = true;
     }
     else
     {
@@ -299,37 +305,22 @@ void MainWindow::on_textEdit_textChanged()
     if(autocomplete && ui->textEdit->toPlainText().size() != 0)
     {
         QTextCursor cursor= ui->textEdit->textCursor();
-        QFont Font = ui->textEdit->font();
-        text = ui->textEdit->toPlainText();
-        if(text.at(ui->textEdit->textCursor().position()-1) == "(")
-        {
-            text.insert(ui->textEdit->textCursor().position(), ")");
-            ui->textEdit->setPlainText(text);
-            cursor.setPosition(cursor.position()-1);
-            ui->textEdit->setTextCursor(cursor);
-        }
-        else if(text.at(ui->textEdit->textCursor().position()-1) == "{")
-        {
-            text.insert(ui->textEdit->textCursor().position(), "}");
-            ui->textEdit->setPlainText(text);
-            cursor.setPosition(cursor.position()-1);
-            ui->textEdit->setTextCursor(cursor);
-        }
-        else if(text.at(ui->textEdit->textCursor().position()-1) == "[")
-        {
-            text.insert(ui->textEdit->textCursor().position(), "]");
-            ui->textEdit->setPlainText(text);
-            cursor.setPosition(cursor.position()-1);
-            ui->textEdit->setTextCursor(cursor);
-        }
-        else if(text.at(ui->textEdit->textCursor().position()-1) == "<")
-        {
-            text.insert(ui->textEdit->textCursor().position(), ">");
-            ui->textEdit->setPlainText(text);
-            cursor.setPosition(cursor.position()-1);
-            ui->textEdit->setTextCursor(cursor);
-        }
-        ui->textEdit->setFont(Font);
+        if(ui->textEdit->toPlainText().at(cursor.position()-1) == "("){
+            ui->textEdit->textCursor().insertText(")");
+            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            ui->textEdit->setTextCursor(cursor);}
+        else if(ui->textEdit->toPlainText().at(cursor.position()-1) == "{"){
+            ui->textEdit->textCursor().insertText("}");
+            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            ui->textEdit->setTextCursor(cursor);}
+        else if(ui->textEdit->toPlainText().at(cursor.position()-1) == "["){
+            ui->textEdit->textCursor().insertText("]");
+            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            ui->textEdit->setTextCursor(cursor);}
+        else if(ui->textEdit->toPlainText().at(cursor.position()-1) == "<"){
+            ui->textEdit->textCursor().insertText(">");
+            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+            ui->textEdit->setTextCursor(cursor);}
     }
 }
 
@@ -337,6 +328,10 @@ void MainWindow::on_textEdit_cursorPositionChanged()
 {
     if(usage == tr("Entwicklung").toLatin1().data())
         highlightCurrentLine();
+//    ui->checkBox->setChecked(ui->textEdit->currentFont().bold());         Buggy
+//    ui->checkBox_2->setChecked(ui->textEdit->currentFont().italic());
+//    ui->checkBox_2->setChecked(ui->textEdit->currentFont().underline());
+//    ui->doubleSpinBox->setValue(ui->textEdit->currentFont().pointSize());
 }
 
 void MainWindow::highlightCurrentLine()
@@ -395,6 +390,26 @@ void MainWindow::on_actionEinstellungen_triggered()
     loadsettings();
 }
 
+void MainWindow::on_actionBild_triggered()
+{
+    QFileDialog a;
+    a.exec();
+    ui->textEdit->textCursor().insertImage(QImage(a.selectedFiles().last()),\
+                                           a.selectedFiles().last());
+}
+
+void MainWindow::on_actionTabelle_triggered()
+{
+    TableDialog a;
+    if(a.exec())
+        ui->textEdit->textCursor().insertTable(a.rows, a.columns);
+}
+
+void MainWindow::on_actionListe_triggered()
+{
+    ui->textEdit->textCursor().insertList(QTextListFormat::ListDisc);
+}
+
 void MainWindow::on_actionRueckg_ngig_triggered()       {    ui->textEdit->undo();}
 
 void MainWindow::on_actionWiederherstellen_triggered()  {    ui->textEdit->redo();}
@@ -412,6 +427,21 @@ void MainWindow::on_actionSpeichern_als_triggered()
         ui->lineEdit->setText(a.selectedFiles().last().split("/", QString::KeepEmptyParts).last());
     }
     save();
+}
+
+void MainWindow::on_action_oeffnen_von_triggered()
+{
+    QFileDialog a;
+    if(a.exec())
+    {
+        QList<QString> tmpl = a.selectedFiles().last().split("/", QString::KeepEmptyParts);
+        QString tmps;   tmpl.removeFirst();
+        for(int i=0;i<tmpl.size()-1;i++)
+            tmps.append("/"+tmpl.at(i));
+        ui->label->setText(tmps+"/");
+        ui->lineEdit->setText(a.selectedFiles().last().split("/", QString::KeepEmptyParts).last());
+    }
+    open();
 }
 
 void MainWindow::on_actionDrucken_triggered()
@@ -461,20 +491,14 @@ void MainWindow::on_pushButton_5_clicked()
 void MainWindow::savecolor()
 {
     QFile f("settings.txt");
-    QTextStream in(&f);
     if(f.open(QIODevice::ReadOnly))
     {
-        text = in.readAll();
         f.close();
         if(f.open(QIODevice::WriteOnly))
         {
-            char out[2] = ";";
-            text = strtok(text.toLatin1().data(), out);
-            text = text + ';' + strtok(NULL, out) + ';';
-            text = text + strtok(NULL, out) + ';';
-            text = text + strtok(NULL, out) + ';';
-            text = text + strtok(NULL, out) + ';';
-            text = text + strtok(NULL, out) + ';'; //dublicate when you add a new setting
+            text = pfad+";"+mylanguage+";"+usage+";"+\
+                    autosaveintervall+";"+themem+";"+\
+                    QString::number(autocomplete)+";";//+setting+";"
             for(i = 0; i < 16; i++)
             {
                 customcolor[i] = QColorDialog::customColor(i);
@@ -482,9 +506,7 @@ void MainWindow::savecolor()
                 text = text + savecolorchar + ';';
             }
             text = text+"_";
-            char* dataf = new char[text.length() + 1];
-            strcpy(dataf, text.toLatin1().data());
-            f.write(dataf, strlen(dataf));
+            f.write(text.toLatin1());
         }
     }
 }
@@ -510,6 +532,12 @@ void MainWindow::closeEvent( QCloseEvent *event)
 }
 
 #undef MAINWINDOW_CPP
+
+
+
+
+
+
 
 
 

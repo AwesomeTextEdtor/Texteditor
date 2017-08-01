@@ -70,6 +70,14 @@ private slots:
 
     void on_textEdit_textChanged();
 
+    void on_action_oeffnen_von_triggered();
+
+    void on_actionBild_triggered();
+
+    void on_actionTabelle_triggered();
+
+    void on_actionListe_triggered();
+
 private:
     Ui::MainWindow *ui;
     void loadsettings();
@@ -83,6 +91,7 @@ private:
     void highlightCurrentLine();
 
     Highlighter *highlighter;
+    StandartHighlighter *standarthighlighter;
 };
 
 #endif // MAINWINDOW_H

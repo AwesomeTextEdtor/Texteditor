@@ -266,6 +266,7 @@ p, li { white-space: pre-wrap; }
      <string>Da&amp;tei</string>
     </property>
     <addaction name="actionOeffnen"/>
+    <addaction name="action_oeffnen_von"/>
     <addaction name="actionSpeichern"/>
     <addaction name="actionSpeichern_als"/>
     <addaction name="actionDrucken"/>
@@ -282,8 +283,17 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>Bearbeiten</string>
     </property>
+    <widget class="QMenu" name="menuEinf_gen">
+     <property name="title">
+      <string>Einfügen</string>
+     </property>
+     <addaction name="actionBild"/>
+     <addaction name="actionTabelle"/>
+     <addaction name="actionListe"/>
+    </widget>
     <addaction name="actionRueckg_ngig"/>
     <addaction name="actionWiederherstellen"/>
+    <addaction name="menuEinf_gen"/>
     <addaction name="actionEinstellungen"/>
    </widget>
    <addaction name="menuDatei"/>
@@ -380,6 +390,29 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="action_oeffnen_von">
+   <property name="text">
+    <string>&amp;Öffnen von</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+O</string>
+   </property>
+  </action>
+  <action name="actionBild">
+   <property name="text">
+    <string>Bild</string>
+   </property>
+  </action>
+  <action name="actionTabelle">
+   <property name="text">
+    <string>Tabelle</string>
+   </property>
+  </action>
+  <action name="actionListe">
+   <property name="text">
+    <string>Liste</string>
    </property>
   </action>
  </widget>
