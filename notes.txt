@@ -1,8 +1,10 @@
 Geplant:
         Links aufrufbar
-	.gef datei support(my)
-	Druck vorschau
+        .gef datei support(my)
         aktuelle font im fenster anzeigen
 	
 
 Bugs:
+		textEdit nimmt Palette als schrift-stil an, Darf nicht sein
+
+TODO    strtok mit split ersetzen

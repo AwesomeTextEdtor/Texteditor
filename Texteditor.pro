@@ -20,7 +20,9 @@ SOURCES += main.cpp\
     creditdialog.cpp \
     settingsdialog.cpp \
     syntaxhighlighter.cpp \
-    tabledialog.cpp
+    tabledialog.cpp \
+    linkdialog.cpp \
+    gefile.cpp
 
 HEADERS  += mainwindow.h \
     helpdialog.h \
@@ -29,13 +31,16 @@ HEADERS  += mainwindow.h \
     includes.h \
     syntaxhighlighter.h \
     deenscript.h \
-    tabledialog.h
+    tabledialog.h \
+    linkdialog.h \
+    gefile.h
 
 FORMS    += mainwindow.ui \
     helpdialog.ui \
     creditdialog.ui \
     settingsdialog.ui \
-    tabledialog.ui
+    tabledialog.ui \
+    linkdialog.ui
 
 RESOURCES += \
     resources.qrc

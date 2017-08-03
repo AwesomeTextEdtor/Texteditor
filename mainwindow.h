@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTextDocument>
+#include <QPrinter>
 #include <syntaxhighlighter.h>
 
 namespace Ui {
@@ -18,65 +19,42 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_fontComboBox_currentFontChanged(const QFont &f);
-
-    void on_checkBox_toggled(bool b_checked);
-
-    void on_checkBox_2_toggled(bool k_checked);
-
-    void on_checkBox_3_toggled(bool u_checked);
-
-    void on_checkBox_4_toggled(bool d_checked);
-
-    void on_doubleSpinBox_valueChanged(double arg1);
-
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_5_clicked();
-
-    void on_pushButton_6_clicked();
-
-    void on_actionOeffnen_triggered();
-
-    void on_actionSpeichern_triggered();
-
-    void on_actionSpeichern_als_triggered();
-
-    void on_actionDrucken_triggered();
-
-    void on_actionCredits_triggered();
-
-    void on_actionAleitung_triggered();
-
-    void on_actionSchliessen_triggered();
-
-    void on_actionEinstellungen_triggered();
-
-    void on_actionRueckg_ngig_triggered();
-
-    void on_actionWiederherstellen_triggered();
-
-    void on_comboBox_currentTextChanged(const QString &arg1);
-
     void save();
-
     void open();
-
-    void on_comboBox_2_currentTextChanged(const QString &arg1);
-
-    void on_textEdit_cursorPositionChanged();
-
-    void on_textEdit_textChanged();
-
-    void on_action_oeffnen_von_triggered();
-
+    void printpreview(QPrinter *printer);
+    void on_checkBox_toggled(bool b_checked);
+    void on_checkBox_2_toggled(bool k_checked);
+    void on_checkBox_3_toggled(bool u_checked);
+    void on_checkBox_4_toggled(bool d_checked);
+    void on_pushButton_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButton_5_clicked();
+    void on_pushButton_6_clicked();
     void on_actionBild_triggered();
-
-    void on_actionTabelle_triggered();
-
     void on_actionListe_triggered();
+    void on_actionTabelle_triggered();
+    void on_actionOeffnen_triggered();
+    void on_actionDrucken_triggered();
+    void on_actionCredits_triggered();
+    void on_actionAleitung_triggered();
+    void on_actionSpeichern_triggered();
+    void on_actionSchliessen_triggered();
+    void on_actionRueckg_ngig_triggered();
+    void on_action_oeffnen_von_triggered();
+    void on_actionSpeichern_als_triggered();
+    void on_actionEinstellungen_triggered();
+    void on_actionWiederherstellen_triggered();
+    void on_textEdit_textChanged();
+    void on_textEdit_cursorPositionChanged();
+    void on_fontComboBox_currentFontChanged(const QFont &f);
+    void on_comboBox_currentTextChanged(const QString &arg1);
+    void on_comboBox_2_currentTextChanged(const QString &arg1);
+    void on_doubleSpinBox_valueChanged(double arg1);
+    void on_actionHyperlink_triggered();
+    void on_actionKopieren_triggered();
+    void on_actionEinf_gen_triggered();
+    void on_actionAusschneiden_triggered();
+    void on_actionDruck_Vorschau_triggered();
 
 private:
     Ui::MainWindow *ui;

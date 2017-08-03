@@ -8,6 +8,8 @@
 #include "settingsdialog.h"
 #include "deenscript.h"
 #include "tabledialog.h"
+#include "linkdialog.h"
+#include "gefile.h"
 #include "qfont.h"
 #include <limits.h>
 #include <stdio.h>
@@ -33,6 +35,7 @@
 #include <QTextCodec>
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
+#include <QtPrintSupport/QPrintPreviewDialog>
 #include <QtPrintSupport/QAbstractPrintDialog>
 
 char out[127];
@@ -130,6 +133,9 @@ void MainWindow::loadicons()
     ui->actionEinstellungen->setIcon(QIcon(":/Icons/settings.png"));
     ui->actionAleitung->setIcon(QIcon(":/Icons/icon.png"));
     ui->actionCredits->setIcon(QIcon(":/Icons/icon.png"));
+    ui->actionKopieren->setIcon(QIcon::fromTheme("edit-copy"));
+    ui->actionEinf_gen->setIcon(QIcon::fromTheme("edit-paste"));
+    ui->actionAusschneiden->setIcon(QIcon::fromTheme("edit-cut"));
 }
 
 void MainWindow::loadDevMode()
@@ -208,8 +214,10 @@ void MainWindow::save()
         if(f.open(QIODevice::WriteOnly))
         {
             if(ending == "gef"){
-                text = ui->textEdit->toPlainText();//gef format
-                f.write(text.toLatin1());}
+                GeFile gef;
+                gef.setdescript(ui->textEdit->toHtml());
+                f.write(gef.getenscript().toLatin1());
+            }
             else if(ending == "odt"){
                 QTextDocumentWriter w(datei);
                 w.write(ui->textEdit->document());}
@@ -259,8 +267,11 @@ void MainWindow::open()
     open:if(f.open(QIODevice::ReadOnly))
     {
         if(ending == "gef"){
-            text = in.readAll();//gef format
-            ui->textEdit->setPlainText(text);}
+            GeFile gef;
+            text = in.readAll();
+            gef.setenscript(text);
+            ui->textEdit->setHtml(gef.getdescript());
+        }
         else if(ending == "html"){
             text = in.readAll();
             ui->textEdit->setHtml(text);}
@@ -282,6 +293,11 @@ void MainWindow::open()
             goto open;
         }
     }
+}
+
+void MainWindow::printpreview(QPrinter *printer)
+{
+    ui->textEdit->print(printer);
 }
 
 void MainWindow::print()
@@ -378,6 +394,14 @@ void MainWindow::on_actionAleitung_triggered()
     a.exec();
 }
 
+void MainWindow::on_actionDruck_Vorschau_triggered()
+{
+    QPrinter printer(QPrinter::HighResolution);
+    QPrintPreviewDialog preview(&printer, this);
+    connect(&preview, &QPrintPreviewDialog::paintRequested, this, &MainWindow::printpreview);
+    preview.exec();
+}
+
 void MainWindow::on_actionSchliessen_triggered()
 {
     close();
@@ -388,6 +412,21 @@ void MainWindow::on_actionEinstellungen_triggered()
     SettingsDialog a;
     a.exec();
     loadsettings();
+}
+
+void MainWindow::on_actionKopieren_triggered()
+{
+    ui->textEdit->copy();
+}
+
+void MainWindow::on_actionEinf_gen_triggered()
+{
+    ui->textEdit->paste();
+}
+
+void MainWindow::on_actionAusschneiden_triggered()
+{
+    ui->textEdit->cut();
 }
 
 void MainWindow::on_actionBild_triggered()
@@ -403,6 +442,15 @@ void MainWindow::on_actionTabelle_triggered()
     TableDialog a;
     if(a.exec())
         ui->textEdit->textCursor().insertTable(a.rows, a.columns);
+}
+
+void MainWindow::on_actionHyperlink_triggered()
+{
+    LinkDialog a;
+    QString html;
+    if(a.exec()){
+        html = a.hyperlink;
+        ui->textEdit->textCursor().insertHtml(html);}
 }
 
 void MainWindow::on_actionListe_triggered()
@@ -532,6 +580,14 @@ void MainWindow::closeEvent( QCloseEvent *event)
 }
 
 #undef MAINWINDOW_CPP
+
+
+
+
+
+
+
+
 
 
 

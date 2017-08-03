@@ -29,4 +29,18 @@ private:
     Ui::TableDialog *ui;
 };
 
+
+
 #endif // TABLEDIALOG_H
+
+
+
+
+
+
+
+
+
+
+
+
