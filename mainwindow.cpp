@@ -10,29 +10,30 @@
 #include "tabledialog.h"
 #include "linkdialog.h"
 #include "gefile.h"
-#include "qfont.h"
 #include <limits.h>
 #include <stdio.h>
+
+#include <QFile>
 #include <QFont>
+#include <QIcon>
+#include <QList>
+#include <QColor>
+#include <QDebug>
+#include <QTimer>
+#include <QObject>
 #include <QString>
 #include <QMenuBar>
-#include <QFile>
-#include <QTextStream>
-#include <QDebug>
 #include <QByteArray>
+#include <QTextCodec>
 #include <QCloseEvent>
-#include <QList>
-#include <QColorDialog>
-#include <QColor>
-#include <QTranslator>
-#include <QObject>
-#include <QTimer>
-#include <QTimerEvent>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTextStream>
+#include <QTimerEvent>
+#include <QTranslator>
+#include <QColorDialog>
 #include <QTextDocument>
 #include <QTextDocumentWriter>
-#include <QTextCodec>
 #include <QtPrintSupport/QPrinter>
 #include <QtPrintSupport/QPrintDialog>
 #include <QtPrintSupport/QPrintPreviewDialog>
@@ -45,6 +46,7 @@ QString mylanguage, usage, savecolorchar, autosaveintervall, junk;
 bool v_checked = false, saved = true, devmode = false;
 QColor textcolor, initial = Qt::white, color, customcolor[16];
 QColorDialog::ColorDialogOptions options;
+QMenu *editContextMenu;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -63,6 +65,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textEdit->setTabStopWidth(30);
     saved = true;
     standarthighlighter = new StandartHighlighter(ui->textEdit->document());
+    connect(ui->textEdit,SIGNAL(customContextMenuRequested(const QPoint&)),this,SLOT(showContextMenu(const QPoint&)));
+    connect(ui->lineEdit,SIGNAL(customContextMenuRequested(const QPoint&)),this,SLOT(showContextMenu(const QPoint&)));
+    ui->textEdit->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
 MainWindow::~MainWindow()
@@ -133,9 +138,10 @@ void MainWindow::loadicons()
     ui->actionEinstellungen->setIcon(QIcon(":/Icons/settings.png"));
     ui->actionAleitung->setIcon(QIcon(":/Icons/icon.png"));
     ui->actionCredits->setIcon(QIcon(":/Icons/icon.png"));
-    ui->actionKopieren->setIcon(QIcon::fromTheme("edit-copy"));
-    ui->actionEinf_gen->setIcon(QIcon::fromTheme("edit-paste"));
-    ui->actionAusschneiden->setIcon(QIcon::fromTheme("edit-cut"));
+    ui->actionKopieren->setIcon(QIcon(":/Icons/copy.png"));
+    ui->actionEinf_gen->setIcon(QIcon(":/Icons/paste.png"));
+    ui->menuEinf_gen->setIcon(QIcon(":/Icons/paste (1).png"));
+    ui->actionAusschneiden->setIcon(QIcon(":/Icons/scissors.png"));
 }
 
 void MainWindow::loadDevMode()
@@ -164,6 +170,27 @@ void MainWindow::inittimer()
         connect(autosavetimer, SIGNAL(timeout()), this, SLOT(save()));
         autosavetimer->start(i);
     }
+}
+
+void MainWindow::showContextMenu(const QPoint &pt)
+{
+    QAction *clear;
+    QMenu *menu = ui->textEdit->createStandardContextMenu();
+    QList<QAction*> actions = menu->actions();
+    clear = new QAction(QIcon(":/Icons/clear.png"), "Clear", this);
+    connect(clear, &QAction::triggered, this, &MainWindow::clear);
+    actions.at(0)->setIcon(QIcon(":/Icons/undo.png"));
+    actions.at(1)->setIcon(QIcon(":/Icons/redo.png"));
+    actions.at(3)->setIcon(QIcon(":/Icons/scissors.png"));
+    actions.at(4)->setIcon(QIcon(":/Icons/copy.png"));
+    actions.at(5)->setIcon(QIcon(":/Icons/copy.png"));
+    actions.at(6)->setIcon(QIcon(":/Icons/paste.png"));
+    actions.at(7)->setIcon(QIcon(":/Icons/delete.png"));
+    actions.append(clear);
+    for(int i=0;i<actions.size();i++)
+        menu->addAction(actions.at(i));
+    menu->exec(ui->textEdit->mapToGlobal(pt));
+    delete menu;
 }
 
 void MainWindow::on_fontComboBox_currentFontChanged(const QFont &f)
@@ -293,6 +320,11 @@ void MainWindow::open()
             goto open;
         }
     }
+}
+
+void MainWindow::clear()
+{
+    ui->textEdit->clear();
 }
 
 void MainWindow::printpreview(QPrinter *printer)
@@ -579,7 +611,11 @@ void MainWindow::closeEvent( QCloseEvent *event)
     event->accept();
 }
 
+
+
 #undef MAINWINDOW_CPP
+
+
 
 
 

@@ -21,6 +21,8 @@ public:
 private slots:
     void save();
     void open();
+    void clear();
+    void showContextMenu(const QPoint &pt);
     void printpreview(QPrinter *printer);
     void on_checkBox_toggled(bool b_checked);
     void on_checkBox_2_toggled(bool k_checked);

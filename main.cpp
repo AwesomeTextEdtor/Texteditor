@@ -110,6 +110,7 @@ int main(int argc, char *argv[])
 {
     int languagesucces = loadlanguage();
     QApplication a(argc, argv);
+    Q_INIT_RESOURCE(resources);
     a.installTranslator(&MyTranslator);
     a.installTranslator(&QtTranslator);
     if(theme == "Dark Fusion")
