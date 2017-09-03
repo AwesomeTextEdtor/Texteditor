@@ -1,34 +1,24 @@
 #include "tabledialog.h"
 #include "ui_tabledialog.h"
 
-TableDialog::TableDialog(QWidget *parent) :
+tableDialog::tableDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TableDialog)
+    ui(new Ui::tableDialog)
 {
     ui->setupUi(this);
 }
 
-TableDialog::~TableDialog()
+tableDialog::~tableDialog()
 {
     delete ui;
 }
 
-void TableDialog::on_buttonBox_accepted()
-{
-    accept();
-}
-
-void TableDialog::on_buttonBox_rejected()
-{
-    reject();
-}
-
-void TableDialog::on_rows_valueChanged(int arg1)
-{
-    rows = arg1;
-}
-
-void TableDialog::on_columns_valueChanged(int arg1)
+void tableDialog::on_spinBox_valueChanged(int arg1)
 {
     columns = arg1;
+}
+
+void tableDialog::on_spinBox_2_valueChanged(int arg1)
+{
+    rows = arg1;
 }

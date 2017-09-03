@@ -1,36 +1,22 @@
 #include "linkdialog.h"
 #include "ui_linkdialog.h"
 
-LinkDialog::LinkDialog(QWidget *parent) :
+linkDialog::linkDialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::LinkDialog)
+    ui(new Ui::linkDialog)
 {
     ui->setupUi(this);
 }
 
-LinkDialog::~LinkDialog()
+linkDialog::~linkDialog()
 {
     delete ui;
 }
-void LinkDialog::on_buttonBox_accepted()
+
+void linkDialog::on_buttonBox_accepted()
 {
-    url = ui->lineEdit->text();
-    name = ui->lineEdit_2->text();
+    url = ui->lineEditUrl->text();
+    name = ui->lineEditName->text();
     hyperlink =  "<a href=\""+url+"\"><span style=\" text-decoration: underline; color:#007af4;\">"+name+"</span></a>";
     accept();
 }
-
-void LinkDialog::on_buttonBox_rejected()
-{
-    reject();
-}
-
-
-
-
-
-
-
-
-
-

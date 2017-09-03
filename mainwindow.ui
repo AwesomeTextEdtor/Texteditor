@@ -6,234 +6,108 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>783</width>
-    <height>497</height>
+    <width>1061</width>
+    <height>609</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Texteditor</string>
-  </property>
-  <property name="windowIcon">
-   <iconset>
-    <normaloff>:/new/ico/Icon.ico</normaloff>:/new/ico/Icon.ico</iconset>
+   <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_6">
         <item>
-         <widget class="QCheckBox" name="checkBox">
-          <property name="font">
-           <font>
-            <weight>75</weight>
-            <bold>true</bold>
-           </font>
-          </property>
+         <widget class="QPushButton" name="buttonBold">
           <property name="text">
            <string>Fett</string>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_2">
-          <property name="font">
-           <font>
-            <italic>true</italic>
-           </font>
-          </property>
+         <widget class="QPushButton" name="buttonItalic">
           <property name="text">
            <string>Kursiv</string>
           </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_3">
-          <property name="font">
-           <font>
-            <underline>true</underline>
-           </font>
+         <widget class="QPushButton" name="buttonUnderlined">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="text">
-           <string>Unterstrichen</string>
+           <string>Untersctrichen</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_4">
-          <property name="font">
-           <font>
-            <strikeout>true</strikeout>
-           </font>
+         <widget class="QPushButton" name="buttonFixedOut">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
           <property name="text">
            <string>Durchgestrichen</string>
           </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QComboBox" name="comboBox"/>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QComboBox" name="comboBox_2"/>
-          </item>
-          <item>
-           <widget class="QPushButton" name="pushButton_5">
-            <property name="text">
-             <string>Schriftfarbe</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_3">
-        <item>
-         <widget class="QFontComboBox" name="fontComboBox">
-          <property name="iconSize">
-           <size>
-            <width>8</width>
-            <height>8</height>
-           </size>
-          </property>
-          <property name="fontFilters">
-           <set>QFontComboBox::MonospacedFonts|QFontComboBox::ProportionalFonts|QFontComboBox::ScalableFonts</set>
-          </property>
-          <property name="currentFont">
-           <font>
-            <family>DejaVu Sans</family>
-           </font>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer_2">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QDoubleSpinBox" name="doubleSpinBox">
-          <property name="font">
-           <font>
-            <pointsize>10</pointsize>
-           </font>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
        </layout>
       </item>
       <item>
-       <widget class="QTextBrowser" name="textEdit">
-        <property name="undoRedoEnabled">
-         <bool>true</bool>
+       <spacer name="horizontalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-        <property name="readOnly">
-         <bool>false</bool>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
         </property>
-        <property name="textInteractionFlags">
-         <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
-        </property>
-        <property name="openExternalLinks">
-         <bool>true</bool>
-        </property>
-       </widget>
+       </spacer>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <layout class="QHBoxLayout" name="horizontalLayout">
-              <item>
-               <widget class="QPushButton" name="pushButton">
-                <property name="text">
-                 <string>Speichern</string>
-                </property>
-                <property name="autoDefault">
-                 <bool>false</bool>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_2">
-                <property name="text">
-                 <string>Öffnen</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="pushButton_6">
-                <property name="text">
-                 <string>Drucken</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>108</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_3">
-              <property name="text">
-               <string>Schließen</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_5">
-            <item>
-             <widget class="QLabel" name="label">
-              <property name="text">
-               <string/>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QLineEdit" name="lineEdit"/>
-            </item>
-            <item>
-             <widget class="QLabel" name="metadatalabel">
-              <property name="text">
-               <string>Metadaten</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
+         <widget class="QComboBox" name="comboBoxQuickColorSelect">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>2</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>0</height>
+           </size>
+          </property>
+         </widget>
         </item>
         <item>
-         <widget class="QCheckBox" name="checkBox_5">
+         <widget class="QPushButton" name="buttonTextColor">
           <property name="text">
-           <string>Datei Verschlüsseln/Entschlüsseln</string>
+           <string>Schriftfarbe</string>
           </property>
          </widget>
         </item>
@@ -241,175 +115,409 @@
       </item>
      </layout>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QFontComboBox" name="fontComboBox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBoxTextJustiefy">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <item>
+         <property name="text">
+          <string>Linksbündig</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Zentriert</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Blocksatz</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Rechtsbündig</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QDoubleSpinBox" name="spinBoxTextSize">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QTextBrowser" name="textEdit">
+      <property name="readOnly">
+       <bool>false</bool>
+      </property>
+      <property name="textInteractionFlags">
+       <set>Qt::LinksAccessibleByKeyboard|Qt::LinksAccessibleByMouse|Qt::TextBrowserInteraction|Qt::TextEditable|Qt::TextEditorInteraction|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+      </property>
+      <property name="openExternalLinks">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <widget class="QPushButton" name="buttonSave">
+          <property name="text">
+           <string>Speichern</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonOpen">
+          <property name="text">
+           <string>Öffnen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonPrint">
+          <property name="text">
+           <string>Drucken</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="buttonClose">
+        <property name="text">
+         <string>Schließen</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <item>
+       <widget class="QLabel" name="labelPath">
+        <property name="text">
+         <string>Ordnerpfad</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="lineEditFile"/>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QCheckBox" name="checkBoxDeEnScript">
+        <property name="text">
+         <string>verschlüsseln/entschlüsseln</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="labelMetadata">
+        <property name="text">
+         <string>Metadaten</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
+   <zorder>textEdit</zorder>
+   <zorder></zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>783</width>
-     <height>19</height>
+     <width>1061</width>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuDatei">
-    <property name="tearOffEnabled">
-     <bool>false</bool>
-    </property>
     <property name="title">
-     <string>Da&amp;tei</string>
+     <string>Datei</string>
     </property>
-    <addaction name="actionOeffnen"/>
-    <addaction name="action_oeffnen_von"/>
-    <addaction name="actionSpeichern"/>
-    <addaction name="actionSpeichern_als"/>
-    <addaction name="actionDrucken"/>
-    <addaction name="actionDruck_Vorschau"/>
-    <addaction name="actionSchliessen"/>
-   </widget>
-   <widget class="QMenu" name="menuHilfe">
-    <property name="title">
-     <string>Hilfe</string>
-    </property>
-    <addaction name="actionAleitung"/>
-    <addaction name="actionCredits"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionOpenFrom"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="actionPrint"/>
+    <addaction name="actionPrintPreview"/>
+    <addaction name="actionClose"/>
    </widget>
    <widget class="QMenu" name="menuBearbeiten">
     <property name="title">
      <string>Bearbeiten</string>
     </property>
-    <widget class="QMenu" name="menuEinf_gen">
+    <widget class="QMenu" name="menuObjekt_Einf_gen">
      <property name="title">
       <string>Objekt Einfügen</string>
      </property>
-     <addaction name="actionBild"/>
-     <addaction name="actionTabelle"/>
-     <addaction name="actionListe"/>
+     <addaction name="actionImage"/>
+     <addaction name="actionTable"/>
+     <addaction name="actionList"/>
      <addaction name="actionHyperlink"/>
     </widget>
-    <addaction name="actionRueckg_ngig"/>
-    <addaction name="actionWiederherstellen"/>
-    <addaction name="actionKopieren"/>
-    <addaction name="actionEinf_gen"/>
-    <addaction name="actionAusschneiden"/>
-    <addaction name="menuEinf_gen"/>
-    <addaction name="actionEinstellungen"/>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionCut"/>
+    <addaction name="menuObjekt_Einf_gen"/>
+    <addaction name="actionSettings"/>
+   </widget>
+   <widget class="QMenu" name="menuAnsicht">
+    <property name="title">
+     <string>Ansicht</string>
+    </property>
+    <addaction name="actionToggleFullscreen"/>
+    <addaction name="actionHide"/>
+   </widget>
+   <widget class="QMenu" name="menuHilfe">
+    <property name="title">
+     <string>Hilfe</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="actionCredits"/>
    </widget>
    <addaction name="menuDatei"/>
    <addaction name="menuBearbeiten"/>
+   <addaction name="menuAnsicht"/>
    <addaction name="menuHilfe"/>
   </widget>
-  <action name="actionSpeichern">
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/open.png</normaloff>:/Icons/open.png</iconset>
+   </property>
    <property name="text">
-    <string>&amp;Speichern</string>
-   </property>
-   <property name="iconText">
-    <string>Speichern</string>
-   </property>
-   <property name="toolTip">
-    <string>Speichern</string>
-   </property>
-   <property name="statusTip">
-    <string extracomment="Just save your file"/>
-   </property>
-   <property name="whatsThis">
-    <string extracomment="Just save your file"/>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+S</string>
-   </property>
-  </action>
-  <action name="actionOeffnen">
-   <property name="text">
-    <string>&amp;Öffnen</string>
-   </property>
-   <property name="iconText">
     <string>Öffnen</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
    </property>
   </action>
-  <action name="actionSchliessen">
-   <property name="enabled">
-    <bool>true</bool>
+  <action name="actionOpenFrom">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/open.png</normaloff>:/Icons/open.png</iconset>
    </property>
    <property name="text">
-    <string>&amp;Schliessen</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Q</string>
-   </property>
-  </action>
-  <action name="actionAleitung">
-   <property name="text">
-    <string>&amp;Anleitung</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+H</string>
-   </property>
-  </action>
-  <action name="actionCredits">
-   <property name="text">
-    <string>&amp;Credits</string>
-   </property>
-  </action>
-  <action name="actionEinstellungen">
-   <property name="text">
-    <string>&amp;Einstellungen</string>
-   </property>
-  </action>
-  <action name="actionRueckg_ngig">
-   <property name="text">
-    <string>&amp;Rückgängig</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Z</string>
-   </property>
-  </action>
-  <action name="actionWiederherstellen">
-   <property name="text">
-    <string>&amp;Wiederherstellen</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+Z</string>
-   </property>
-  </action>
-  <action name="actionSpeichern_als">
-   <property name="text">
-    <string>&amp;Speichern als</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
-   </property>
-  </action>
-  <action name="actionDrucken">
-   <property name="text">
-    <string>&amp;Drucken</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+P</string>
-   </property>
-  </action>
-  <action name="action_oeffnen_von">
-   <property name="text">
-    <string>&amp;Öffnen von</string>
+    <string>Öffnen von</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+O</string>
    </property>
   </action>
-  <action name="actionBild">
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/save.png</normaloff>:/Icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Speichern</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/save.png</normaloff>:/Icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Speicheren Als</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/print.png</normaloff>:/Icons/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Drucken</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionPrintPreview">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/print.png</normaloff>:/Icons/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>Druckvorschau</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/quit.png</normaloff>:/Icons/quit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Schließen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/undo.png</normaloff>:/Icons/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rückgängig</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/redo.png</normaloff>:/Icons/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wiederherstellen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/copy.png</normaloff>:/Icons/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Kopieren</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/paste.png</normaloff>:/Icons/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>Einfügen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/scissors.png</normaloff>:/Icons/scissors.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ausschneiden</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/settings.png</normaloff>:/Icons/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Einstellungen</string>
+   </property>
+  </action>
+  <action name="actionImage">
    <property name="text">
     <string>Bild</string>
    </property>
   </action>
-  <action name="actionTabelle">
+  <action name="actionTable">
    <property name="text">
     <string>Tabelle</string>
    </property>
   </action>
-  <action name="actionListe">
+  <action name="actionList">
    <property name="text">
     <string>Liste</string>
    </property>
@@ -419,55 +527,118 @@
     <string>Hyperlink</string>
    </property>
   </action>
-  <action name="actionKopieren">
+  <action name="actionToggleFullscreen">
    <property name="text">
-    <string>Kopieren</string>
+    <string>Vollbildmodus Umschalten</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+C</string>
+    <string>F11</string>
    </property>
   </action>
-  <action name="actionEinf_gen">
+  <action name="actionHide">
    <property name="text">
-    <string>Einfügen</string>
+    <string>Verstecken</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+V</string>
+    <string>F9</string>
    </property>
   </action>
-  <action name="actionAusschneiden">
+  <action name="actionHelp">
    <property name="text">
-    <string>Ausschneiden</string>
+    <string>Hilfe</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+X</string>
+    <string>Ctrl+H</string>
    </property>
   </action>
-  <action name="actionDruck_Vorschau">
+  <action name="actionCredits">
    <property name="text">
-    <string>Druck-Vorschau</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+Shift+P</string>
+    <string>Credits</string>
    </property>
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
  <connections>
   <connection>
-   <sender>pushButton_3</sender>
+   <sender>fontComboBox</sender>
+   <signal>currentFontChanged(QFont)</signal>
+   <receiver>textEdit</receiver>
+   <slot>setCurrentFont(QFont)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>58</x>
+     <y>74</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>258</x>
+     <y>328</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonClose</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>737</x>
-     <y>413</y>
+     <x>1011</x>
+     <y>535</y>
     </hint>
     <hint type="destinationlabel">
-     <x>775</x>
-     <y>399</y>
+     <x>1022</x>
+     <y>471</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>spinBoxTextSize</sender>
+   <signal>valueChanged(double)</signal>
+   <receiver>textEdit</receiver>
+   <slot>setFontPointSize(double)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1023</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>444</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonItalic</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>textEdit</receiver>
+   <slot>setFontItalic(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>148</x>
+     <y>33</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>196</x>
+     <y>213</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonUnderlined</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>textEdit</receiver>
+   <slot>setFontUnderline(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>226</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>363</x>
+     <y>164</y>
     </hint>
    </hints>
   </connection>

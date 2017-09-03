@@ -1,33 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LinkDialog</class>
- <widget class="QDialog" name="LinkDialog">
+ <class>linkDialog</class>
+ <widget class="QDialog" name="linkDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>242</width>
-    <height>125</height>
+    <width>184</width>
+    <height>99</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLabel" name="urllabel">
-       <property name="text">
-        <string>Url:</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLineEdit" name="lineEdit"/>
-     </item>
-    </layout>
-   </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -38,7 +24,21 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2"/>
+      <widget class="QLineEdit" name="lineEditName"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="urllabel">
+       <property name="text">
+        <string>Url:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="lineEditUrl"/>
      </item>
     </layout>
    </item>
@@ -59,7 +59,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>LinkDialog</receiver>
+   <receiver>linkDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -75,7 +75,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>LinkDialog</receiver>
+   <receiver>linkDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

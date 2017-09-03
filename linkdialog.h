@@ -4,25 +4,23 @@
 #include <QDialog>
 
 namespace Ui {
-class LinkDialog;
+class linkDialog;
 }
 
-class LinkDialog : public QDialog
+class linkDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit LinkDialog(QWidget *parent = 0);
-    ~LinkDialog();
-    QString url, name, hyperlink;
+    explicit linkDialog(QWidget *parent = 0);
+    ~linkDialog();
+    QString name,url,hyperlink;
 
 private slots:
     void on_buttonBox_accepted();
 
-    void on_buttonBox_rejected();
-
 private:
-    Ui::LinkDialog *ui;
+    Ui::linkDialog *ui;
 };
 
 #endif // LINKDIALOG_H

@@ -2,6 +2,8 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QSettings>
+#include <QMainWindow>
 
 namespace Ui {
 class SettingsDialog;
@@ -14,20 +16,21 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
-    void save();
+    void setSettings(QSettings *Settings, QMainWindow *Mainwindow);
+    QMainWindow *mainwindow;
 
 private slots:
-    void on_buttonBox_accepted();
+    void on_buttonAccept_clicked();
 
-    void on_buttonBox_rejected();
+    void on_buttonApply_clicked();
 
-    void on_pushButton_clicked();
+    void on_buttonChancel_clicked();
 
-    void on_applyButton_clicked();
+    void on_buttonEditColors_clicked();
 
 private:
     Ui::SettingsDialog *ui;
-    void load();
+    QSettings *settings;
 };
 
 #endif // SETTINGSDIALOG_H

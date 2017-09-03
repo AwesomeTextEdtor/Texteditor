@@ -1,10 +1,10 @@
 Geplant:
-        Links aufrufbar
-        .gef datei support(my)
         aktuelle font im fenster anzeigen
+        QFile::exists()
 	
 
 Bugs:
 		textEdit nimmt Palette als schrift-stil an, Darf nicht sein
+                Windows keine resourcen datei auserhalb von Qt
 
 TODO    strtok mit split ersetzen

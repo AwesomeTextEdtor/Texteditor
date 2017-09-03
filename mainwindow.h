@@ -1,10 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "syntaxhighlighter.h"
+#include <QSettings>
 #include <QMainWindow>
-#include <QTextDocument>
-#include <QPrinter>
-#include <syntaxhighlighter.h>
+#include <QTranslator>
+#include <QColorDialog>
+#include <QSystemTrayIcon>
+#include <QTextDocumentWriter>
+#include <QtPrintSupport/QPrinter>
+#include <QtPrintSupport/QPrintDialog>
 
 namespace Ui {
 class MainWindow;
@@ -18,60 +23,65 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+protected:
+    void changeEvent(QEvent);
+
 private slots:
+    void on_buttonBold_toggled(bool b_checked);
+    void on_buttonFixedOut_toggled(bool f_checked);
+    void on_comboBoxTextJustiefy_currentTextChanged(const QString &arg1);
+    void on_buttonSave_clicked();
+    void on_buttonOpen_clicked();
+    void on_buttonPrint_clicked();
+    void on_buttonTextColor_clicked();
+    void on_actionOpen_triggered();
+    void on_actionOpenFrom_triggered();
+    void on_actionSave_triggered();
+    void on_actionSaveAs_triggered();
+    void on_actionPrint_triggered();
+    void on_actionPrintPreview_triggered();
+    void on_actionClose_triggered();
+    void on_actionUndo_triggered();
+    void on_actionRedo_triggered();
+    void on_actionCopy_triggered();
+    void on_actionPaste_triggered();
+    void on_actionCut_triggered();
+    void on_actionSettings_triggered();
+    void on_actionImage_triggered();
+    void on_actionTable_triggered();
+    void on_actionList_triggered();
+    void on_actionHyperlink_triggered();
+    void on_actionToggleFullscreen_triggered();
+    void on_actionHide_triggered();
+    void on_actionHelp_triggered();
+    void on_actionCredits_triggered();
+    void on_comboBoxQuickColorSelect_currentTextChanged(const QString &arg1);
     void save();
     void open();
     void clear();
-    void showContextMenu(const QPoint &pt);
-    void printpreview(QPrinter *printer);
-    void on_checkBox_toggled(bool b_checked);
-    void on_checkBox_2_toggled(bool k_checked);
-    void on_checkBox_3_toggled(bool u_checked);
-    void on_checkBox_4_toggled(bool d_checked);
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
-    void on_pushButton_5_clicked();
-    void on_pushButton_6_clicked();
-    void on_actionBild_triggered();
-    void on_actionListe_triggered();
-    void on_actionTabelle_triggered();
-    void on_actionOeffnen_triggered();
-    void on_actionDrucken_triggered();
-    void on_actionCredits_triggered();
-    void on_actionAleitung_triggered();
-    void on_actionSpeichern_triggered();
-    void on_actionSchliessen_triggered();
-    void on_actionRueckg_ngig_triggered();
-    void on_action_oeffnen_von_triggered();
-    void on_actionSpeichern_als_triggered();
-    void on_actionEinstellungen_triggered();
-    void on_actionWiederherstellen_triggered();
-    void on_textEdit_textChanged();
-    void on_textEdit_cursorPositionChanged();
-    void on_fontComboBox_currentFontChanged(const QFont &f);
-    void on_comboBox_currentTextChanged(const QString &arg1);
-    void on_comboBox_2_currentTextChanged(const QString &arg1);
-    void on_doubleSpinBox_valueChanged(double arg1);
-    void on_actionHyperlink_triggered();
-    void on_actionKopieren_triggered();
-    void on_actionEinf_gen_triggered();
-    void on_actionAusschneiden_triggered();
-    void on_actionDruck_Vorschau_triggered();
-
-private:
-    Ui::MainWindow *ui;
-    void loadsettings();
-    void loadtheme();
-    void loadicons();
-    void loadDevMode();
-    void closeEvent(QCloseEvent *event);
-    void savecolor();
-    void inittimer();
     void print();
+    void showt();
+    void inittimer();
+    void loadDevMode();
+    void autocomplete();
+    void loadsettings();
+    void printpreview(QPrinter *printer);
+    void showContextMenu(const QPoint &pt);
     void highlightCurrentLine();
 
-    Highlighter *highlighter;
+private:
+    void closeEvent(QCloseEvent *event);
+
+    Ui::MainWindow *ui;
+    Highlighter *devhighligter;
     StandartHighlighter *standarthighlighter;
+    bool saved, autocompleteb, devmode;
+    QSettings *settings;
+    QString filename, file, text, path, language, usage, timeintervall;
+    QColor textcolor, initial = Qt::white, color, customcolor[16];
+    QColorDialog::ColorDialogOptions options;
+    QSystemTrayIcon *trayIcon;
+    QTranslator *MyTranslator, *QtTranslator;
 };
 
 #endif // MAINWINDOW_H

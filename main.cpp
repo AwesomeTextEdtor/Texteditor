@@ -1,48 +1,31 @@
-#define MAIN
-//#include "includes.h"
-
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTranslator>
+#include <QSettings>
 #include <QLibraryInfo>
 #include <QString>
-#include <QFile>
 #include <QTextStream>
 #include <QStyle>
 #include <QStyleFactory>
 #include <QStyleOption>
-#include <stdio.h>
+#include <QTranslator>
+#include <QDebug>
 
+QString theme, language;
 QTranslator MyTranslator, QtTranslator;
-QString theme;
+
 int loadlanguage()
 {
-    QString datei = "settings.txt", mylanguage, text, junk;
-    QFile f(datei);
-    QTextStream in(&f);
-    if(f.open(QIODevice::ReadOnly))
-    {
-        text = in.readAll();
-        char* dataf = new char[text.length() + 1];
-        char outs[2] = ";";
-        strcpy(dataf, text.toLatin1().data());
 
-        junk = strtok(dataf, outs);
-        mylanguage = strtok(NULL, outs);
-        junk = strtok(NULL, outs);
-        junk = strtok(NULL, outs);
-        theme = strtok(NULL, outs);
-    }
 #ifdef WIN32
-    if(mylanguage == "Systemsprache")
+    if(language == "Systemsprache")
     {MyTranslator.load("qt_de.qm" , "translations\\");} //isn't finish
-    else if(mylanguage == "Deutsch")
+    else if(language == "Deutsch")
         {MyTranslator.load("tr_de.qm", "translations\\"); QtTranslator.load("qt_de.qm", "translations\\");}
-    else if(mylanguage == "English")
+    else if(language == "English")
         {MyTranslator.load("tr_en.qm", "translations\\"); QtTranslator.load("qt_en.qm", "translations\\");}
-    else if(mylanguage == "Francais")
+    else if(language == "Francais")
         {MyTranslator.load("tr_fr.qm", "translations\\"); QtTranslator.load("qt_fr.qm", "translations\\");}
-    else if(mylanguage == "")
+    else if(language == "")
         {MyTranslator.load("tr_de.qm", "translations\\"); QtTranslator.load("qt_de.qm", "translations\\");}
     else
         return 1;
@@ -108,21 +91,25 @@ QPalette loadpalette()
 
 int main(int argc, char *argv[])
 {
-    int languagesucces = loadlanguage();
-    QApplication a(argc, argv);
     Q_INIT_RESOURCE(resources);
+    QSettings *settings = new QSettings("Galaxyqasar", "Texteditor");
+    settings->beginGroup("Mainwindow");
+    theme = settings->value("theme", "Normal").toString();
+    language = settings->value("language", "Deutsch").toString();
+    settings->endGroup();
+    loadlanguage();
+    QApplication a(argc, argv);
     a.installTranslator(&MyTranslator);
     a.installTranslator(&QtTranslator);
+    MainWindow w;
     if(theme == "Dark Fusion")
     {
         a.setStyle(QStyleFactory::create("Fusion"));
         a.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
     }
     a.setPalette(loadpalette());
-    MainWindow w;
     w.show();
     bool succsess = a.exec();
-    return (succsess+(languagesucces*2));
+    return succsess;
 }
 
-#undef MAIN

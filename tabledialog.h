@@ -4,43 +4,25 @@
 #include <QDialog>
 
 namespace Ui {
-class TableDialog;
+class tableDialog;
 }
 
-class TableDialog : public QDialog
+class tableDialog : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit TableDialog(QWidget *parent = 0);
-    ~TableDialog();
-    int rows, columns;
+    explicit tableDialog(QWidget *parent = 0);
+    ~tableDialog();
+    int rows,columns;
 
 private slots:
-    void on_buttonBox_accepted();
+    void on_spinBox_valueChanged(int arg1);
 
-    void on_buttonBox_rejected();
-
-    void on_rows_valueChanged(int arg1);
-
-    void on_columns_valueChanged(int arg1);
+    void on_spinBox_2_valueChanged(int arg1);
 
 private:
-    Ui::TableDialog *ui;
+    Ui::tableDialog *ui;
 };
 
-
-
 #endif // TABLEDIALOG_H
-
-
-
-
-
-
-
-
-
-
-
-
