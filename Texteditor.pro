@@ -31,7 +31,9 @@ SOURCES += \
     settingsdialog.cpp \
     tabledialog.cpp \
     linkdialog.cpp \
-    syntaxhighlighter.cpp
+    syntaxhighlighter.cpp \
+    creditdialog.cpp \
+    helpdialog.cpp
 
 HEADERS += \
         mainwindow.h\
@@ -40,13 +42,17 @@ HEADERS += \
     settingsdialog.h \
     tabledialog.h \
     linkdialog.h\
-    syntaxhighlighter.h
+    syntaxhighlighter.h \
+    creditdialog.h \
+    helpdialog.h
 
 FORMS += \
         mainwindow.ui \
     settingsdialog.ui \
     tabledialog.ui \
-    linkdialog.ui
+    linkdialog.ui \
+    creditdialog.ui \
+    helpdialog.ui
 
 RESOURCES += \
     resources.qrc

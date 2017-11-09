@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>GalaxyEdit</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="resources.qrc">
+    <normaloff>:/Icons/icon.png</normaloff>:/Icons/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -310,6 +314,7 @@
     <addaction name="actionOpenFrom"/>
     <addaction name="actionSave"/>
     <addaction name="actionSaveAs"/>
+    <addaction name="actionReload"/>
     <addaction name="actionPrint"/>
     <addaction name="actionPrintPreview"/>
     <addaction name="actionClose"/>
@@ -544,6 +549,10 @@
    </property>
   </action>
   <action name="actionHelp">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/icon.png</normaloff>:/Icons/icon.png</iconset>
+   </property>
    <property name="text">
     <string>Hilfe</string>
    </property>
@@ -552,8 +561,24 @@
    </property>
   </action>
   <action name="actionCredits">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/icon.png</normaloff>:/Icons/icon.png</iconset>
+   </property>
    <property name="text">
     <string>Credits</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/Icons/reload.png</normaloff>:/Icons/reload.png</iconset>
+   </property>
+   <property name="text">
+    <string>Neu Laden</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>

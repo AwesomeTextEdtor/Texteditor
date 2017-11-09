@@ -15,9 +15,6 @@ public:
     explicit CreditDialog(QWidget *parent = 0);
     ~CreditDialog();
 
-private slots:
-    void on_pushButton_clicked();
-
 private:
     Ui::CreditDialog *ui;
 };

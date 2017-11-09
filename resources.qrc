@@ -18,5 +18,7 @@
         <file>Icons/scissors.png</file>
         <file>Icons/settings.png</file>
         <file>Icons/undo.png</file>
+        <file>Icons/github.png</file>
+        <file>Icons/reload.png</file>
     </qresource>
 </RCC>

@@ -5,6 +5,8 @@
 #include "settingsdialog.h"
 #include "tabledialog.h"
 #include "linkdialog.h"
+#include "creditdialog.h"
+#include "helpdialog.h"
 #include <QFile>
 #include <QDebug>
 #include <QTimer>
@@ -284,12 +286,21 @@ void MainWindow::on_actionHide_triggered()
 
 void MainWindow::on_actionHelp_triggered()
 {
-
+    HelpDialog *a;
+    a = new HelpDialog(this);
+    a->show();
 }
 
 void MainWindow::on_actionCredits_triggered()
 {
+    CreditDialog *a;
+    a = new CreditDialog(this);
+    a->show();
+}
 
+void MainWindow::on_actionReload_triggered()
+{
+    open();
 }
 
 void MainWindow::on_comboBoxQuickColorSelect_currentTextChanged(const QString &arg1)
@@ -506,3 +517,5 @@ void MainWindow::closeEvent( QCloseEvent *event)
     }
     event->accept();
 }
+
+

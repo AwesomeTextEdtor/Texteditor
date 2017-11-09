@@ -55,6 +55,7 @@ private slots:
     void on_actionHide_triggered();
     void on_actionHelp_triggered();
     void on_actionCredits_triggered();
+    void on_actionReload_triggered();
     void on_comboBoxQuickColorSelect_currentTextChanged(const QString &arg1);
     void save();
     void open();
@@ -68,6 +69,7 @@ private slots:
     void printpreview(QPrinter *printer);
     void showContextMenu(const QPoint &pt);
     void highlightCurrentLine();
+
 
 private:
     void closeEvent(QCloseEvent *event);

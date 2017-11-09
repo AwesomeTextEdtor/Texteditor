@@ -1,6 +1,3 @@
-#define HELPDIALOG
-//#include "includes.h"
-
 #include "helpdialog.h"
 #include "ui_helpdialog.h"
 
@@ -15,10 +12,3 @@ HelpDialog::~HelpDialog()
 {
     delete ui;
 }
-
-void HelpDialog::on_pushButton_clicked()
-{
-    done(1);
-}
-
-#undef HELPDIALOG
