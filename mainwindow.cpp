@@ -40,6 +40,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->textEdit->setUndoRedoEnabled(true);
     ui->textEdit->setFontPointSize(ui->spinBoxTextSize->value());
     standarthighlighter = new StandartHighlighter(ui->textEdit->document());
+    options = QColorDialog::DontUseNativeDialog;
+    loadCompilers();
 }
 
 MainWindow::~MainWindow()
@@ -54,6 +56,7 @@ void MainWindow::loadsettings()
     settings->beginGroup("Mainwindow");
     ui->labelPath->setText(settings->value("path",tr("fehler")).toString());
     autocompleteb = settings->value("autocomplete", false).toBool();
+    highlightCurrentL = settings->value("highlightCurrentLine", false).toBool();
     ui->comboBoxQuickColorSelect->addItems(settings->value("colors").toStringList());
     usage = settings->value("usage", tr("Büroarbeit")).toString();
     timeintervall = settings->value("autosave", tr("Nie")).toString();
@@ -68,8 +71,12 @@ void MainWindow::loadsettings()
         pixmap.fill(QColor(ui->comboBoxQuickColorSelect->itemText(i)));
         ui->comboBoxQuickColorSelect->setItemIcon(i, QIcon(pixmap));
     }
-    if(usage == "Entwicklung")
+    if(usage == tr("Entwicklung"))
         loadDevMode();
+    else if(usage == tr("Büroarbeit"))
+        loadStdMode();
+    else if(usage == tr("Wissenschaftlich"))
+        loadScienceMode();
     if(!(timeintervall == tr("Nie")))
         inittimer();
 }
@@ -84,11 +91,47 @@ void MainWindow::inittimer()
     autosavetimer->start(intervall);
 }
 
+void MainWindow::openFile(QString filename)
+{
+    ui->labelPath->setText(filename);
+    open();
+}
+
 void MainWindow::loadDevMode()
 {
-    highlightCurrentLine();
+    if(highlightCurrentL)
+        highlightCurrentLine();
+    else
+        ui->textEdit->setExtraSelections(QList<QTextEdit::ExtraSelection>());
     devhighligter = new Highlighter(ui->textEdit->document());
     devmode = true;
+    ui->tabWidget->addTab(ui->bashTab, tr("Bash"));
+    ui->compilerComboBox->show();
+    ui->executeButton->show();
+}
+
+void MainWindow::loadStdMode()
+{
+    devmode = false;
+    ui->textEdit->setExtraSelections(QList<QTextEdit::ExtraSelection>());
+    ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->bashTab));
+    ui->compilerComboBox->hide();
+    ui->executeButton->hide();
+}
+
+void MainWindow::loadScienceMode()
+{
+    ;
+}
+
+void MainWindow::loadCompilers(QString filename)
+{
+    if(filename == "Settings"){
+        //load from Settings
+    }
+    else{
+        //load from xml file
+    }
 }
 
 void MainWindow::on_buttonBold_toggled(bool b_checked)
@@ -136,7 +179,6 @@ void MainWindow::on_buttonPrint_clicked()
 void MainWindow::on_buttonTextColor_clicked()
 {
     QStringList tmp;
-    options = QColorDialog::DontUseNativeDialog;
     textcolor = QColorDialog::getColor(Qt::white, NULL, NULL, options);
     ui->textEdit->setTextColor(textcolor);
     ui->comboBoxQuickColorSelect->clear();
@@ -308,6 +350,23 @@ void MainWindow::on_comboBoxQuickColorSelect_currentTextChanged(const QString &a
     ui->textEdit->setTextColor(QColor(arg1));
 }
 
+void MainWindow::on_executeButton_clicked()
+{
+    if(ui->compilerComboBox->currentText() == "Qt Quick"){
+        engine.loadData(ui->textEdit->toPlainText().toLatin1());
+        if (engine.rootObjects().isEmpty())
+            return;
+    }
+    else if(ui->compilerComboBox->currentText() == "GCC C"){
+        save();
+        QString compilerPath = "D:\\Downloads\\tcc-master\\win32\\tcc.exe", programmPath = "D:\\test.exe";
+        QString command = "echo compiling... && " + compilerPath + " " + filename + " -o " + programmPath + " && echo execute && pause && " + programmPath + " && pause";
+        qDebug()<<command;
+        system(QString("echo compiling... && " + compilerPath + " " + filename + " -o " + programmPath).toLatin1().data());
+    }
+
+}
+
 void MainWindow::showt()
 {
     show();
@@ -335,6 +394,14 @@ void MainWindow::autocomplete()
             ui->textEdit->textCursor().insertText(">");
             cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
             ui->textEdit->setTextCursor(cursor);}
+//        else if(ui->textEdit->toPlainText().at(cursor.position()-1) == "\'"){
+//            ui->textEdit->textCursor().insertText("\'");
+//            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+//            ui->textEdit->setTextCursor(cursor);}
+//        else if(ui->textEdit->toPlainText().at(cursor.position()-1) == "\""){
+//            ui->textEdit->textCursor().insertText("\"");
+//            cursor.movePosition(QTextCursor::Left, QTextCursor::MoveAnchor, 1);
+//            ui->textEdit->setTextCursor(cursor);}
     }
 }
 

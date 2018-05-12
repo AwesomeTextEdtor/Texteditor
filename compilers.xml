@@ -1,0 +1,9 @@
+<xml>
+
+<compilers>
+    <compiler name = "GCC C" path = ""/>
+    <compiler name = "GCC C++" path = ""/>
+    <compiler name = "TCC" path = ""/>
+    <compiler name = "MinGW C" path = ""/>
+    <compiler name = "MinGW C++" path = ""/>
+</compilers>

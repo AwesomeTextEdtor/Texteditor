@@ -20,5 +20,6 @@
         <file>Icons/undo.png</file>
         <file>Icons/github.png</file>
         <file>Icons/reload.png</file>
+        <file>imports.qml</file>
     </qresource>
 </RCC>

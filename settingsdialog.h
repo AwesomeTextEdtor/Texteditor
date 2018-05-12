@@ -28,6 +28,8 @@ private slots:
 
     void on_buttonEditColors_clicked();
 
+    void on_comboBoxUsage_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::SettingsDialog *ui;
     QSettings *settings;

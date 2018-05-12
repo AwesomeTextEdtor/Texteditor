@@ -4,12 +4,18 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui quick qml\
+            multimedia sql \
+            network websockets \
+            xml svg \
+            sensors bluetooth nfc \
+            positioning location \
+            3dcore 3dinput 3dquick
 QT       += printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Texteditor_2
+TARGET = GalaxyEdit
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -64,9 +70,12 @@ TRANSLATIONS += \
     tr_ru.ts
 
 OTHER_FILES += \
-    tr_en.ts \
-    tr_de.ts \
-    tr_fr.ts \
-    tr_ru.ts \
     notes.txt \
     README.md
+
+DISTFILES += \
+    tr_de.ts \
+    tr_en.ts \
+    tr_fr.ts \
+    tr_ru.ts \
+    compilers.xml

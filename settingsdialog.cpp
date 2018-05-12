@@ -8,6 +8,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     mainwindow = new QMainWindow;
+    on_comboBoxUsage_currentIndexChanged(ui->comboBoxUsage->currentText());
 }
 
 SettingsDialog::~SettingsDialog()
@@ -24,6 +25,7 @@ void SettingsDialog::setSettings(QSettings *Settings, QMainWindow *Mainwindow)
     ui->comboBoxLanguage->setCurrentText(settings->value("language", "English").toString());
     ui->comboBoxUsage->setCurrentText(settings->value("usage", "Büroarbeit").toString());
     ui->checkBoxAutocomplete->setChecked(settings->value("autocomplete", false).toBool());
+    ui->highlightCurrentCheckBox->setChecked(settings->value("highlightCurrentLine", false).toBool());
     ui->comboBoxAutosave->setCurrentText(settings->value("autosave", "Nie").toString());
     ui->comboBoxTheme->setCurrentText(settings->value("theme", "standart").toString());
     ui->comboBoxColors->addItems(settings->value("colors").toStringList());
@@ -50,6 +52,7 @@ void SettingsDialog::on_buttonApply_clicked()
     settings->setValue("language", ui->comboBoxLanguage->currentText());
     settings->setValue("usage", ui->comboBoxUsage->currentText());
     settings->setValue("autocomplete", ui->checkBoxAutocomplete->isChecked());
+    settings->setValue("highlightCurrentLine", ui->highlightCurrentCheckBox->isChecked());
     settings->setValue("theme", ui->comboBoxTheme->currentText());
     settings->setValue("colors", tmp);
     settings->endGroup();
@@ -83,4 +86,12 @@ void SettingsDialog::on_buttonEditColors_clicked()
     settings->beginGroup("Mainwindow");
     settings->setValue("colors", tmp);
     settings->endGroup();
+}
+
+void SettingsDialog::on_comboBoxUsage_currentIndexChanged(const QString &arg1)
+{
+    if(arg1 == tr("Entwicklung"))
+        ui->tabWidget->addTab(ui->tabDeveloppementSettings, tr("Entwicklungs Einstellungen"));
+    else
+        ui->tabWidget->removeTab(ui->tabWidget->indexOf(ui->tabDeveloppementSettings));
 }

@@ -9,26 +9,27 @@
 #include <QStyleOption>
 #include <QTranslator>
 #include <QDebug>
+#include <QProcess>
+
 
 QString theme, language;
 QTranslator MyTranslator, QtTranslator;
 
 int loadlanguage()
 {
-
+    qDebug()<<language;
 #ifdef WIN32
     if(language == "Systemsprache")
-    {MyTranslator.load("qt_de.qm" , "translations\\");} //isn't finish
+    {QtTranslator.load("qt_de.qm" , "translations\\");} //isn't finish
     else if(language == "Deutsch")
         {MyTranslator.load("tr_de.qm", "translations\\"); QtTranslator.load("qt_de.qm", "translations\\");}
     else if(language == "English")
         {MyTranslator.load("tr_en.qm", "translations\\"); QtTranslator.load("qt_en.qm", "translations\\");}
     else if(language == "Francais")
         {MyTranslator.load("tr_fr.qm", "translations\\"); QtTranslator.load("qt_fr.qm", "translations\\");}
-    else if(language == "")
-        {MyTranslator.load("tr_de.qm", "translations\\"); QtTranslator.load("qt_de.qm", "translations\\");}
     else
-        return 1;
+        {MyTranslator.load("tr_de.qm", "translations\\"); QtTranslator.load("qt_de.qm", "translations\\");}
+
 #endif
 #ifndef WIN32
     if(mylanguage == "Systemsprache")
@@ -92,6 +93,10 @@ QPalette loadpalette()
 int main(int argc, char *argv[])
 {
     Q_INIT_RESOURCE(resources);
+    QList<QString> arguments;
+    for(int i = 0; i < argc; i++)
+        arguments.append(QString(argv[i]));
+    qDebug()<<arguments;
     QSettings *settings = new QSettings("Galaxyqasar", "Texteditor");
     settings->beginGroup("Mainwindow");
     theme = settings->value("theme", "Normal").toString();
@@ -108,6 +113,12 @@ int main(int argc, char *argv[])
         a.setStyleSheet("QToolTip { color: #ffffff; background-color: #2a82da; border: 1px solid white; }");
     }
     a.setPalette(loadpalette());
+    if(arguments.size() >1){
+        if(QFile(arguments.at(1)).exists())
+            w.openFile(arguments.at(1));
+        if(arguments.contains("-c"))
+            w.loadCompilers(arguments.at(arguments.indexOf("-c")+1));
+    }
     w.show();
     bool succsess = a.exec();
     return succsess;

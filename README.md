@@ -24,6 +24,6 @@
 #       Hyperlinks
 #       Links färben(nicht aufrufen)
 #       Druckvorschau
-#       .gef Datei verschlüsselter rich text
+#   .gef Datei verschlüsselter rich text
 	
 Texteditor
